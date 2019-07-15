@@ -1,2 +1,2 @@
-export { default } from "./TextareaWidget";
-export * from "./TextareaWidget";
+export { default } from './TextareaWidget';
+export * from './TextareaWidget';

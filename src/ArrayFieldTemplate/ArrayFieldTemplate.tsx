@@ -5,9 +5,7 @@ import {
   getDefaultRegistry,
 } from 'react-jsonschema-form/lib/utils';
 
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import { Card } from 'antd';
 
 import { ArrayFieldTemplateProps, IdSchema } from 'react-jsonschema-form';
 
@@ -42,6 +40,7 @@ const ArrayFieldTitle = ({
   }
 
   const id = `${idSchema.$id}__title`;
+
   return <TitleField id={id} title={title} required={required} />;
 };
 
@@ -61,6 +60,7 @@ const ArrayFieldDescription = ({
   }
 
   const id = `${idSchema.$id}__description`;
+
   return <DescriptionField id={id} description={description} />;
 };
 
@@ -72,24 +72,25 @@ const DefaultArrayItem = (props: any) => {
     paddingRight: 6,
     fontWeight: 'bold',
   };
+
   return (
-    <Grid container={true} key={props.index} alignItems="center">
-      <Grid item={true} xs>
-        <Box mb={2}>
-          <Paper elevation={2}>
-            <Box p={2}>{props.children}</Box>
-          </Paper>
-        </Box>
-      </Grid>
+    <div container={true} key={props.index} alignItems="center">
+      <div item={true} xs={true}>
+        <Card mb={2}>
+          <div elevation={2}>
+            <Card p={2}>{props.children}</Card>
+          </div>
+        </Card>
+      </div>
 
       {props.hasToolbar && (
-        <Grid item={true}>
+        <div item={true}>
           {(props.hasMoveUp || props.hasMoveDown) && (
             <IconButton
               icon="arrow-up"
               className="array-item-move-up"
               tabIndex={-1}
-              style={btnStyle as any}
+              style={btnStyle}
               disabled={props.disabled || props.readonly || !props.hasMoveUp}
               onClick={props.onReorderClick(props.index, props.index - 1)}
             />
@@ -99,7 +100,7 @@ const DefaultArrayItem = (props: any) => {
             <IconButton
               icon="arrow-down"
               tabIndex={-1}
-              style={btnStyle as any}
+              style={btnStyle}
               disabled={props.disabled || props.readonly || !props.hasMoveDown}
               onClick={props.onReorderClick(props.index, props.index + 1)}
             />
@@ -109,14 +110,14 @@ const DefaultArrayItem = (props: any) => {
             <IconButton
               icon="remove"
               tabIndex={-1}
-              style={btnStyle as any}
+              style={btnStyle}
               disabled={props.disabled || props.readonly}
               onClick={props.onDropIndexClick(props.index)}
             />
           )}
-        </Grid>
+        </div>
       )}
-    </Grid>
+    </div>
   );
 };
 
@@ -160,8 +161,8 @@ const DefaultFixedArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
 
 const DefaultNormalArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
   return (
-    <Paper elevation={2}>
-      <Box p={2}>
+    <div elevation={2}>
+      <Card p={2}>
         <ArrayFieldTitle
           key={`array-field-title-${props.idSchema.$id}`}
           TitleField={props.TitleField}
@@ -181,25 +182,25 @@ const DefaultNormalArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
           />
         )}
 
-        <Grid container={true} key={`array-item-list-${props.idSchema.$id}`}>
+        <div container={true} key={`array-item-list-${props.idSchema.$id}`}>
           {props.items && props.items.map(p => DefaultArrayItem(p))}
 
           {props.canAdd && (
-            <Grid container justify="flex-end">
-              <Grid item={true}>
-                <Box mt={2}>
+            <div container={true} justify="flex-end">
+              <div item={true}>
+                <Card>
                   <AddButton
                     className="array-item-add"
                     onClick={props.onAddClick}
                     disabled={props.disabled || props.readonly}
                   />
-                </Box>
-              </Grid>
-            </Grid>
+                </Card>
+              </div>
+            </div>
           )}
-        </Grid>
-      </Box>
-    </Paper>
+        </div>
+      </Card>
+    </div>
   );
 };
 

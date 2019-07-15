@@ -34,10 +34,7 @@ const TextareaWidget = ({
   }: React.FocusEvent<HTMLInputElement>) => onFocus(id, value);
 
   return (
-    <Form.Item
-      //error={!!rawErrors}
-      required={required}
-    >
+    <Form.Item required={required}>
       <Input
         id={id}
         label={label || schema.title}

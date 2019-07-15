@@ -76,58 +76,57 @@ class Example extends React.Component<any, any> {
             schema={liveSettingsSchema}
             formData={liveSettings}
             onChange={this.setLiveSettings}
-          >
-          </Form>
+          ></Form>
         </>
         <br />
         <div className={styles.ctr}>
           <div className={styles.sourceCtr}>
             <div>
               <Source
-                title={'JSONSchema'}
+                title="JSONSchema"
                 source={schema}
                 onChange={this.onChange('schema')}
               />
             </div>
             <div>
               <Source
-                title={'uiSchema'}
+                title="uiSchema"
                 source={uiSchema}
                 onChange={this.onChange('uiSchema')}
               />
               <Source
-                title={'formData'}
+                title="formData"
                 source={formData}
                 onChange={this.onChange('formData')}
               />
             </div>
           </div>
           <div className={styles.display}>
-              <Card p={2}>
-                <Form
-                  schema={schema}
-                  uiSchema={uiSchema}
-                  formData={formData}
-                  onSubmit={this.onSubmit}
-                  onChange={this.onFormChanged}
-                  liveValidate={liveSettings.validate}
-                  disabled={liveSettings.disabled}
-                  validate={validate}
-                >
-                  <Card mt={2}>
-                    <Button
-                      variant="contained"
-                      color="default"
-                      onClick={this.onCancel}
-                    >
-                      Cancel
-                    </Button>
-                    <Button variant="contained" color="primary" type="submit">
-                      Submit
-                    </Button>
-                  </Card>
-                </Form>
-              </Card>
+            <Card p={2}>
+              <Form
+                schema={schema}
+                uiSchema={uiSchema}
+                formData={formData}
+                onSubmit={this.onSubmit}
+                onChange={this.onFormChanged}
+                liveValidate={liveSettings.validate}
+                disabled={liveSettings.disabled}
+                validate={validate}
+              >
+                <Card mt={2}>
+                  <Button
+                    variant="contained"
+                    color="default"
+                    onClick={this.onCancel}
+                  >
+                    Cancel
+                  </Button>
+                  <Button variant="contained" color="primary" type="submit">
+                    Submit
+                  </Button>
+                </Card>
+              </Form>
+            </Card>
           </div>
         </div>
       </div>

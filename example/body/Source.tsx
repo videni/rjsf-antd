@@ -25,11 +25,13 @@ const cmOptions = {
 
 const isValid = value => {
   let obj;
+
   try {
     obj = JSON.parse(value);
   } catch (e) {
     return false;
   }
+
   return obj;
 };
 
@@ -37,6 +39,7 @@ class Source extends React.Component<any, any> {
   constructor(props) {
     super(props);
     const source = JSON.stringify(this.props.source, null, 2);
+
     this.state = {
       source,
       valid: isValid(source),
@@ -45,6 +48,7 @@ class Source extends React.Component<any, any> {
 
   componentWillReceiveProps = nextProps => {
     const source = JSON.stringify(nextProps.source, null, 2);
+
     this.setState({
       source,
       valid: isValid(source),
@@ -77,7 +81,7 @@ class Source extends React.Component<any, any> {
       <div className={styles.root}>
         <div className={classNames(styles.ctr, { [styles.invalid]: !valid })}>
           <div>
-            <Icon type={valid? 'smile': 'warning'} />
+            <Icon type={valid ? 'smile' : 'warning'} />
             <div className={styles.title}>
               <p>{title}</p>
             </div>

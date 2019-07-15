@@ -14,6 +14,7 @@ const nums = new Set(['number', 'integer']);
 const processValue = (schema: any, value: any) => {
   // "enum" is a reserved word, so only "type" and "items" can be destructured
   const { type, items } = schema;
+
   if (value === '') {
     return undefined;
   } else if (type === 'array' && items && nums.has(items.type)) {
@@ -61,7 +62,9 @@ const SelectWidget = ({
   }: React.ChangeEvent<{ name?: string; value: unknown }>) =>
     onChange(processValue(schema, value));
 
-  const _onBlur = ({ target: { value } }: React.FocusEvent<HTMLInputElement>): void =>
+  const _onBlur = ({
+    target: { value },
+  }: React.FocusEvent<HTMLInputElement>): void =>
     onBlur(id, processValue(schema, value));
 
   const _onFocus = ({
@@ -70,12 +73,7 @@ const SelectWidget = ({
     onFocus(id, processValue(schema, value));
 
   return (
-    <Form.Item
-      //error={!!rawErrors}
-      required={required}
-      label={label || schema.title}
-       htmlFor={id}
-    >
+    <Form.Item required={required} label={label || schema.title} htmlFor={id}>
       <Select
         multiple={typeof multiple === 'undefined' ? false : multiple}
         value={typeof value === 'undefined' ? emptyValue : value}
@@ -86,9 +84,10 @@ const SelectWidget = ({
         onBlur={_onBlur}
         onFocus={_onFocus}
       >
-        {(enumOptions as any).map(({ value, label }: any, i: number) => {
+        {enumOptions.map(({ value, label }: any, i: number) => {
           const disabled: any =
-            enumDisabled && (enumDisabled as any).indexOf(value) != -1;
+            enumDisabled && enumDisabled.indexOf(value) !== -1;
+
           return (
             <Select.Option key={i} value={value} disabled={disabled}>
               {label}

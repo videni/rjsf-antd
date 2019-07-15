@@ -22,7 +22,7 @@ const RadioWidget = ({
   const { enumOptions, enumDisabled } = options;
 
   const _onChange = ({}, value: any) =>
-    onChange(schema.type == 'boolean' ? value !== 'false' : value);
+    onChange(schema.type === 'boolean' ? value !== 'false' : value);
   const _onBlur = ({ target: { value } }: React.FocusEvent<HTMLInputElement>) =>
     onBlur(id, value);
   const _onFocus = ({
@@ -32,20 +32,18 @@ const RadioWidget = ({
   const row = options ? options.inline : false;
 
   return (
-    <Form.Item label={label || schema.title}
-      required={required}
-      htmlFor={id}>
+    <Form.Item label={label || schema.title} required={required} htmlFor={id}>
       <Radio.Group
         name={name}
         value={`${value}`}
-        row={row as boolean}
+        row={row}
         onChange={_onChange}
         onBlur={_onBlur}
         onFocus={_onFocus}
       >
-        {(enumOptions as any).map((option: any, i: number) => {
+        {enumOptions.map((option: any, i: number) => {
           const itemDisabled =
-            enumDisabled && (enumDisabled as any).indexOf(option.value) != -1;
+            enumDisabled && enumDisabled.indexOf(option.value) !== -1;
 
           const radio = (
             <Radio

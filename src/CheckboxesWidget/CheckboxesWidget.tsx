@@ -36,7 +36,7 @@ const CheckboxesWidget = ({
   const _onChange = (option: any) => ({
     target: { checked },
   }: React.ChangeEvent<HTMLInputElement>) => {
-    const all = (enumOptions as any).map(({ value }: any) => value);
+    const all = enumOptions.map(({ value }: any) => value);
 
     if (checked) {
       onChange(selectValue(option.value, value, all));
@@ -53,16 +53,12 @@ const CheckboxesWidget = ({
   }: React.FocusEvent<HTMLButtonElement>) => onFocus(id, value);
 
   return (
-    <Form.Item
-      required={required}
-      label={{label || schema.title}}
-      htmlFor={id}
-    >
+    <Form.Item required={required} label={label || schema.title} htmlFor={id}>
       <Checkbox.Group>
-        {(enumOptions as any).map((option: any, index: number) => {
+        {enumOptions.map((option: any, index: number) => {
           const checked = value.indexOf(option.value) !== -1;
           const itemDisabled =
-            enumDisabled && (enumDisabled as any).indexOf(option.value) != -1;
+            enumDisabled && enumDisabled.indexOf(option.value) !== -1;
           const checkbox = (
             <Checkbox
               id={`${id}_${index}`}
@@ -74,6 +70,7 @@ const CheckboxesWidget = ({
               onFocus={_onFocus}
             />
           );
+
           return inline ? (
             <Form.ItemLabel
               control={checkbox}

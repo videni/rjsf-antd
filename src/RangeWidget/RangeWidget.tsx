@@ -13,31 +13,27 @@ const RangeWidget = ({
   onFocus,
   options,
   schema,
-  //formContext,
-  //registry,
-  //rawErrors,
+  // formContext,
+  // registry,
+  // rawErrors,
   onChange,
   required,
   label,
   id,
 }: WidgetProps) => {
-  let sliderProps = { value, label, id, ...rangeSpec(schema) };
+  const sliderProps = { value, label, id, ...rangeSpec(schema) };
 
   const _onChange = ({}, value: any): void =>
     onChange(value === '' ? options.emptyValue : value);
-  const _onBlur = ({ target: { value } }: React.FocusEvent<HTMLInputElement>): void =>
-    onBlur(id, value);
+  const _onBlur = ({
+    target: { value },
+  }: React.FocusEvent<HTMLInputElement>): void => onBlur(id, value);
   const _onFocus = ({
     target: { value },
   }: React.FocusEvent<HTMLInputElement>): void => onFocus(id, value);
 
   return (
-    <Form.Item
-      //error={!!rawErrors}
-      required={required}
-      id={id}
-      label={label}
-    >
+    <Form.Item required={required} id={id} label={label}>
       <Slider
         {...sliderProps}
         disabled={disabled || readonly}

@@ -33,7 +33,8 @@
     "clean:es": "rimraf es",
     "clean:style": "rimraf style",
     "test": "webpack-dev-server --config=\"./config/webpack.test.js\" --hot --color --port=6060",
-    "lint": "cross-env NODE_ENV=eslint eslint ./ --ext .js,.jsx,.ts,.tsx --fix && cross-env NODE_ENV=tslint tslint --project ./ --fix"
+    "eslint": "cross-env NODE_ENV=eslint eslint ./  --fix --ext .js,.jsx,.ts,.tsx",
+    "tslint": "cross-env NODE_ENV=tslint tslint --fix --project ./"
   },
   "peerDependencies": {
     "antd": "^3.19.5",
@@ -62,14 +63,15 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-import": "^1.12.0",
     "classnames": "^2.2.6",
+    "codemirror": "^5.48.0",
     "cross-env": "^5.2.0",
     "css-loader": "^3.0.0",
     "eslint": "^6.0.1",
     "eslint-plugin-react": "^7.14.2",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^3.0.0",
+    "less": "^3.9.0",
     "less-loader": "^5.0.0",
-    "style-loader": "^0.23.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
@@ -79,15 +81,14 @@
     "react-hot-loader": "^4.12.6",
     "react-jsonschema-form": "^1.6.1",
     "rimraf": "^2.6.3",
+    "style-loader": "^0.23.1",
     "ts-loader": "^6.0.4",
     "tslint": "^5.18.0",
     "typescript": "^3.5.3",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2",
-    "webpack-merge": "^4.2.1",
-    "codemirror": "^5.48.0",
-    "less": "^3.9.0"
+    "webpack-merge": "^4.2.1"
   },
   "husky": {
     "hooks": {

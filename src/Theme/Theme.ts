@@ -14,7 +14,7 @@ const Theme: ThemeProps = {
   ArrayFieldTemplate,
   fields: {
     ...fields,
-    ...Fields
+    ...Fields,
   },
   FieldTemplate,
   ObjectFieldTemplate,

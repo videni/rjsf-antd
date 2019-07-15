@@ -2,7 +2,7 @@ import React from 'react';
 
 import { FieldTemplateProps } from 'react-jsonschema-form';
 
-import { Form, Tooltip, List, Typography  } from 'antd';
+import { Form, Tooltip, List, Typography } from 'antd';
 
 const FieldTemplate = ({
   id,
@@ -13,8 +13,7 @@ const FieldTemplate = ({
   rawDescription,
 }: FieldTemplateProps) => {
   return (
-    <Form.Item
-      validateStatus={rawErrors.length ? error : ''}>
+    <Form.Item validateStatus={rawErrors.length ? error : ''}>
       {children}
       {displayLabel && rawDescription ? (
         <Typography variant="caption" color="textSecondary">
@@ -26,7 +25,7 @@ const FieldTemplate = ({
           {rawErrors.map((error, i: number) => {
             return (
               <List.Item key={i}>
-                  <List.Item.Meta title={error} />
+                <List.Item.Meta title={error} />
               </List.Item>
             );
           })}

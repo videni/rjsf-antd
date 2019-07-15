@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import { ObjectFieldTemplateProps } from 'react-jsonschema-form';
 
 const ObjectFieldTemplate = ({
@@ -13,7 +12,6 @@ const ObjectFieldTemplate = ({
   uiSchema,
   idSchema,
 }: ObjectFieldTemplateProps) => {
-
   return (
     <>
       {(uiSchema['ui:title'] || title) && (
@@ -29,10 +27,8 @@ const ObjectFieldTemplate = ({
           description={description}
         />
       )}
-      <div className='object-template'>
-        {properties.map((element: any, index: number) => (
-            {element.content}
-        ))}
+      <div className="object-template">
+        {properties.map((element: any, index: number) => element.content)}
       </div>
     </>
   );
