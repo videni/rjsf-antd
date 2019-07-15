@@ -1,0 +1,103 @@
+{
+  "name": "rjsf-antd",
+  "version": "0.1",
+  "author": "Vidy Videni <vidy.videni@gmail.com>",
+  "keywords": [
+    "Ant Design",
+    "react-jsonschema-form",
+    "jsonschema",
+    "json-schema",
+    "json",
+    "schema",
+    "form",
+    "react",
+    "antd",
+    "rjsf-antd"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/videni/rjsf-antd.git"
+  },
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/rjsf-antd.js",
+  "typings": "dist/index.d.ts",
+  "description": "Ant Design theme, fields and widgets for react-jsonschema-form",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "webpack-dev-server --config=\"./config/webpack.dev.js\" --hot --color --port=5050",
+    "build": "npm run clean:lib && npm run clean:es && npm run clean:style && cross-env NODE_ENV=production gulp",
+    "clean:lib": "rimraf lib",
+    "clean:es": "rimraf es",
+    "clean:style": "rimraf style",
+    "test": "webpack-dev-server --config=\"./config/webpack.test.js\" --hot --color --port=6060",
+    "lint": "cross-env NODE_ENV=eslint eslint ./ --ext .js,.jsx,.ts,.tsx --fix && cross-env NODE_ENV=tslint tslint --project ./ --fix"
+  },
+  "peerDependencies": {
+    "antd": "^3.19.5",
+    "react": ">=16",
+    "react-dom": ">=16.7.0",
+    "react-jsonschema-form": "^1.6.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/plugin-proposal-do-expressions": "^7.2.0",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.4.5",
+    "@types/jest": "^24.0.15",
+    "@types/json-schema": "^7.0.3",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-jsonschema-form": "^1.6.2",
+    "antd": "^3.20.2",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-import": "^1.12.0",
+    "classnames": "^2.2.6",
+    "cross-env": "^5.2.0",
+    "css-loader": "^3.0.0",
+    "eslint": "^6.0.1",
+    "eslint-plugin-react": "^7.14.2",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.0",
+    "less-loader": "^5.0.0",
+    "style-loader": "^0.23.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1",
+    "react": "^16.8.6",
+    "react-codemirror2": "^6.0.0",
+    "react-dom": "^16.8.6",
+    "react-hot-loader": "^4.12.6",
+    "react-jsonschema-form": "^1.6.1",
+    "rimraf": "^2.6.3",
+    "ts-loader": "^6.0.4",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2",
+    "webpack-merge": "^4.2.1",
+    "codemirror": "^5.48.0",
+    "less": "^3.9.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  }
+}
