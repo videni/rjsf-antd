@@ -27,12 +27,9 @@
     "dist"
   ],
   "scripts": {
-    "dev": "webpack-dev-server --config=\"./config/webpack.dev.js\" --hot --color --port=5050",
-    "build": "npm run clean:lib && npm run clean:es && npm run clean:style && cross-env NODE_ENV=production gulp",
-    "clean:lib": "rimraf lib",
-    "clean:es": "rimraf es",
-    "clean:style": "rimraf style",
-    "test": "webpack-dev-server --config=\"./config/webpack.test.js\" --hot --color --port=6060",
+    "start": "webpack-dev-server --config ./config/webpack.dev.js --hot --color --port=5050",
+    "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.dist.js",
+    "test": "webpack-dev-server --config ./config/webpack.test.js --hot --color --port=6060",
     "eslint": "cross-env NODE_ENV=eslint eslint ./  --fix --ext .js,.jsx,.ts,.tsx",
     "tslint": "cross-env NODE_ENV=tslint tslint --fix --project ./"
   },
