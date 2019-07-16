@@ -1,5 +1,14 @@
 import React from 'react';
-import { Typography, Button, Card, Layout, Form as AntdForm } from 'antd';
+import {
+  Typography,
+  Button,
+  Card,
+  Layout,
+  Divider,
+  Form as AntdForm,
+  Row,
+  Col,
+} from 'antd';
 import { JSONSchema6 } from 'json-schema';
 import Source from './Source';
 import styles from './Example.less';
@@ -46,6 +55,7 @@ class Example extends React.Component<any, any> {
   };
 
   onFormChanged = ({ formData }) => {
+    console.log(formData);
     this.setState({ formData });
   };
 
@@ -61,8 +71,9 @@ class Example extends React.Component<any, any> {
     });
   };
 
-  setLiveSettings = ({ formData }: any) =>
+  setLiveSettings = ({ formData }: any) => {
     this.setState({ liveSettings: formData });
+  };
 
   render() {
     const { data } = this.props;
@@ -70,20 +81,18 @@ class Example extends React.Component<any, any> {
     const { schema, uiSchema, formData, liveSettings, validate } = this.state;
 
     return (
-      <Layout className={styles.root}>
-        <>
-          <Typography component="h4" variant="h4">
-            {title}
-          </Typography>
-          <Form
-            schema={liveSettingsSchema}
-            formData={liveSettings}
-            onChange={this.setLiveSettings}
-          ></Form>
-        </>
-        <br />
-        <div className={styles.ctr}>
-          <div className={styles.sourceCtr}>
+      <Layout>
+        <Typography component="h4" variant="h4">
+          {title}
+        </Typography>
+        <Form
+          schema={liveSettingsSchema}
+          formData={liveSettings}
+          onChange={this.setLiveSettings}
+        ></Form>
+        <Divider />
+        <Row gutter={16}>
+          <Col span={12}>
             <div>
               <Source
                 title="JSONSchema"
@@ -103,22 +112,20 @@ class Example extends React.Component<any, any> {
                 onChange={this.onChange('formData')}
               />
             </div>
-          </div>
-          <div className={styles.display}>
-            <Card>
-              <ExampleForm
-                schema={schema}
-                uiSchema={uiSchema}
-                formData={formData}
-                onSubmit={this.onSubmit}
-                onCancel={this.onCancel}
-                onFormChanged={this.onFormChanged}
-                liveSettings={liveSettings}
-                validate={validate}
-              />
-            </Card>
-          </div>
-        </div>
+          </Col>
+          <Col span={12}>
+            <ExampleForm
+              schema={schema}
+              uiSchema={uiSchema}
+              formData={formData}
+              onSubmit={this.onSubmit}
+              onCancel={this.onCancel}
+              onFormChanged={this.onFormChanged}
+              liveSettings={liveSettings}
+              validate={validate}
+            />
+          </Col>
+        </Row>
       </Layout>
     );
   }

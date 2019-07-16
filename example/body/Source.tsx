@@ -82,9 +82,7 @@ class Source extends React.Component<any, any> {
         <div className={classNames(styles.ctr, { [styles.invalid]: !valid })}>
           <div>
             <Icon type={valid ? 'smile' : 'warning'} />
-            <div className={styles.title}>
-              <p>{title}</p>
-            </div>
+            <span>{title}</span>
           </div>
           <div className={styles.source}>
             <CodeMirror

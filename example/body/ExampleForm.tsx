@@ -17,6 +17,7 @@ const ExampleForm = props => {
 
   return (
     <Form
+      id="example-form"
       schema={schema}
       uiSchema={uiSchema}
       formData={formData}
@@ -26,10 +27,10 @@ const ExampleForm = props => {
       disabled={liveSettings.disabled}
       validate={validate}
     >
-      <Button variant="contained" color="default" onClick={onCancel}>
-        Cancel
+      <Button onClick={onCancel}>Cancel</Button>
+      <Button type="primary" htmlType="submit">
+        Submit
       </Button>
-      <Button type="submit">Submit</Button>
     </Form>
   );
 };
