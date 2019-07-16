@@ -11,14 +11,14 @@ const CheckboxWidget = (props: WidgetProps) => {
     required,
     disabled,
     readonly,
-    label,
     autofocus,
     onChange,
     onBlur,
     onFocus,
   } = props;
 
-  const _onChange = (event: CheckboxChangeEvent) => onChange(event);
+  const _onChange = ({ target: { checked } }: CheckboxChangeEvent) =>
+    onChange(checked);
   const _onBlur = ({
     target: { value },
   }: React.FocusEvent<HTMLButtonElement>) => onBlur(id, value);
