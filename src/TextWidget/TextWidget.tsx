@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Form, Input } from 'antd';
+import { Input } from 'antd';
 
 import { WidgetProps } from 'react-jsonschema-form';
 
@@ -29,20 +29,17 @@ const TextWidget = ({
   }: React.FocusEvent<HTMLInputElement>) => onFocus(id, value);
 
   return (
-    <Form.Item required={required}>
-      <Input
-        id={id}
-        autoFocus={autofocus}
-        label={label || schema.title}
-        required={required}
-        disabled={disabled || readonly}
-        name={name}
-        value={value}
-        onChange={_onChange}
-        onBlur={_onBlur}
-        onFocus={_onFocus}
-      />
-    </Form.Item>
+    <Input
+      autoFocus={autofocus}
+      label={label || schema.title}
+      required={required}
+      disabled={disabled || readonly}
+      name={name}
+      value={value}
+      onChange={_onChange}
+      onBlur={_onBlur}
+      onFocus={_onFocus}
+    />
   );
 };
 

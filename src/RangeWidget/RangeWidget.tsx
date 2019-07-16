@@ -33,15 +33,13 @@ const RangeWidget = ({
   }: React.FocusEvent<HTMLInputElement>): void => onFocus(id, value);
 
   return (
-    <Form.Item required={required} id={id} label={label}>
-      <Slider
-        {...sliderProps}
-        disabled={disabled || readonly}
-        onChange={_onChange}
-        onBlur={_onBlur}
-        onFocus={_onFocus}
-      />
-    </Form.Item>
+    <Slider
+      {...sliderProps}
+      disabled={disabled || readonly}
+      onChange={_onChange}
+      onBlur={_onBlur}
+      onFocus={_onFocus}
+    />
   );
 };
 

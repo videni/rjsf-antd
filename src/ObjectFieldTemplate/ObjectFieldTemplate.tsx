@@ -27,9 +27,7 @@ const ObjectFieldTemplate = ({
           description={description}
         />
       )}
-      <div className="object-template">
-        {properties.map((element: any, index: number) => element.content)}
-      </div>
+      {properties.map((element: any, index: number) => element.content)}
     </>
   );
 };

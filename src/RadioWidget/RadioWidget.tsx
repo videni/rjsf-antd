@@ -32,32 +32,30 @@ const RadioWidget = ({
   const row = options ? options.inline : false;
 
   return (
-    <Form.Item label={label || schema.title} required={required} htmlFor={id}>
-      <Radio.Group
-        name={name}
-        value={`${value}`}
-        row={row}
-        onChange={_onChange}
-        onBlur={_onBlur}
-        onFocus={_onFocus}
-      >
-        {enumOptions.map((option: any, i: number) => {
-          const itemDisabled =
-            enumDisabled && enumDisabled.indexOf(option.value) !== -1;
+    <Radio.Group
+      name={name}
+      value={`${value}`}
+      row={row}
+      onChange={_onChange}
+      onBlur={_onBlur}
+      onFocus={_onFocus}
+    >
+      {enumOptions.map((option: any, i: number) => {
+        const itemDisabled =
+          enumDisabled && enumDisabled.indexOf(option.value) !== -1;
 
-          const radio = (
-            <Radio
-              label={`${option.label}`}
-              value={`${option.value}`}
-              key={i}
-              disabled={disabled || itemDisabled || readonly}
-            />
-          );
+        const radio = (
+          <Radio
+            label={`${option.label}`}
+            value={`${option.value}`}
+            key={i}
+            disabled={disabled || itemDisabled || readonly}
+          />
+        );
 
-          return radio;
-        })}
-      </Radio.Group>
-    </Form.Item>
+        return radio;
+      })}
+    </Radio.Group>
   );
 };
 

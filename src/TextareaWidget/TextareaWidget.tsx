@@ -2,7 +2,7 @@ import React from 'react';
 
 import { WidgetProps } from 'react-jsonschema-form';
 
-import { Form, Input } from 'antd';
+import { Input } from 'antd';
 
 type CustomWidgetProps = WidgetProps & {
   options: any;
@@ -34,22 +34,19 @@ const TextareaWidget = ({
   }: React.FocusEvent<HTMLInputElement>) => onFocus(id, value);
 
   return (
-    <Form.Item required={required}>
-      <Input
-        id={id}
-        label={label || schema.title}
-        placeholder={placeholder}
-        disabled={disabled || readonly}
-        value={value}
-        required={required}
-        autoFocus={autofocus}
-        multiline={true}
-        rows={options.rows || 5}
-        onChange={_onChange}
-        onBlur={_onBlur}
-        onFocus={_onFocus}
-      />
-    </Form.Item>
+    <Input
+      label={label || schema.title}
+      placeholder={placeholder}
+      disabled={disabled || readonly}
+      value={value}
+      required={required}
+      autoFocus={autofocus}
+      multiline={true}
+      rows={options.rows || 5}
+      onChange={_onChange}
+      onBlur={_onBlur}
+      onFocus={_onFocus}
+    />
   );
 };
 

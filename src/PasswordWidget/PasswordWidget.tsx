@@ -27,18 +27,16 @@ const PasswordWidget = ({
   }: React.FocusEvent<HTMLInputElement>) => onFocus(id, value);
 
   return (
-    <Form.Item required={required} label={label || schema.title}>
-      <Input
-        autoFocus={autofocus}
-        required={required}
-        disabled={disabled || readonly}
-        type="password"
-        value={value}
-        onFocus={_onFocus}
-        onBlur={_onBlur}
-        onChange={_onChange}
-      />
-    </Form.Item>
+    <Input
+      autoFocus={autofocus}
+      required={required}
+      disabled={disabled || readonly}
+      type="password"
+      value={value}
+      onFocus={_onFocus}
+      onBlur={_onBlur}
+      onChange={_onChange}
+    />
   );
 };
 

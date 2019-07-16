@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Form, Checkbox } from 'antd';
+import { Checkbox } from 'antd';
 
 import { WidgetProps } from 'react-jsonschema-form';
 
@@ -53,40 +53,26 @@ const CheckboxesWidget = ({
   }: React.FocusEvent<HTMLButtonElement>) => onFocus(id, value);
 
   return (
-    <Form.Item required={required} label={label || schema.title} htmlFor={id}>
-      <Checkbox.Group>
-        {enumOptions.map((option: any, index: number) => {
-          const checked = value.indexOf(option.value) !== -1;
-          const itemDisabled =
-            enumDisabled && enumDisabled.indexOf(option.value) !== -1;
-          const checkbox = (
-            <Checkbox
-              id={`${id}_${index}`}
-              checked={checked}
-              disabled={disabled || itemDisabled || readonly}
-              autoFocus={autofocus && index === 0}
-              onChange={_onChange(option)}
-              onBlur={_onBlur}
-              onFocus={_onFocus}
-            />
-          );
-
-          return inline ? (
-            <Form.ItemLabel
-              control={checkbox}
-              key={index}
-              label={option.label}
-            />
-          ) : (
-            <Form.ItemLabel
-              control={checkbox}
-              key={index}
-              label={option.label}
-            />
-          );
-        })}
-      </Checkbox.Group>
-    </Form.Item>
+    <Checkbox.Group>
+      {enumOptions.map((option: any, index: number) => {
+        const checked = value.indexOf(option.value) !== -1;
+        const itemDisabled =
+          enumDisabled && enumDisabled.indexOf(option.value) !== -1;
+        return (
+          <Checkbox
+            id={`${id}_${index}`}
+            checked={checked}
+            disabled={disabled || itemDisabled || readonly}
+            autoFocus={autofocus && index === 0}
+            onChange={_onChange(option)}
+            onBlur={_onBlur}
+            onFocus={_onFocus}
+          >
+            {option.label}
+          </Checkbox>
+        );
+      })}
+    </Checkbox.Group>
   );
 };
 

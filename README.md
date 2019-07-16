@@ -1,10 +1,6 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/videni/rjsf-antd">
-    <img src="https://raw.githubusercontent.com/videni/rjsf-antd/master/rjsf-antd-logo.png" alt="Logo" width="140" height="120">
-  </a>
-
   <h3 align="center">rjsf-antd</h3>
 
   <p align="center">
@@ -41,7 +37,7 @@
 
 [![rjsf-antd Screen Shot][product-screenshot]](https://github.com/videni/rjsf-antd)
 
-Exports `material-ui` theme, fields and widgets for `react-jsonschema-form`.
+Exports `Ant Design` theme, fields and widgets for `react-jsonschema-form`.
 
 ### Built With
 

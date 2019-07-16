@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom';
 import Body from './body';
 import examples from './examples';
 import Menu from './menu';
+import { Layout } from 'antd';
+
+const { Header, Footer, Sider, Content } = Layout;
 
 const App = () => {
   const [selectedExample, setSelectedExample] = React.useState(examples.simple);
@@ -11,10 +14,14 @@ const App = () => {
   const onSelectMenuItem = type => () => setSelectedExample(type);
 
   return (
-    <div>
-      <Menu onSelectMenuItem={onSelectMenuItem} />
-      <Body selectedDemo={selectedExample} />
-    </div>
+    <Layout>
+      <Sider theme="light">
+        <Menu onSelectMenuItem={onSelectMenuItem} />
+      </Sider>
+      <Content>
+        <Body selectedDemo={selectedExample} />
+      </Content>
+    </Layout>
   );
 };
 

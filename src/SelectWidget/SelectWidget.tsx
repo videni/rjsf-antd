@@ -73,29 +73,27 @@ const SelectWidget = ({
     onFocus(id, processValue(schema, value));
 
   return (
-    <Form.Item required={required} label={label || schema.title} htmlFor={id}>
-      <Select
-        multiple={typeof multiple === 'undefined' ? false : multiple}
-        value={typeof value === 'undefined' ? emptyValue : value}
-        required={required}
-        disabled={disabled || readonly}
-        autoFocus={autofocus}
-        onChange={_onChange}
-        onBlur={_onBlur}
-        onFocus={_onFocus}
-      >
-        {enumOptions.map(({ value, label }: any, i: number) => {
-          const disabled: any =
-            enumDisabled && enumDisabled.indexOf(value) !== -1;
+    <Select
+      multiple={typeof multiple === 'undefined' ? false : multiple}
+      value={typeof value === 'undefined' ? emptyValue : value}
+      required={required}
+      disabled={disabled || readonly}
+      autoFocus={autofocus}
+      onChange={_onChange}
+      onBlur={_onBlur}
+      onFocus={_onFocus}
+    >
+      {enumOptions.map(({ value, label }: any, i: number) => {
+        const disabled: any =
+          enumDisabled && enumDisabled.indexOf(value) !== -1;
 
-          return (
-            <Select.Option key={i} value={value} disabled={disabled}>
-              {label}
-            </Select.Option>
-          );
-        })}
-      </Select>
-    </Form.Item>
+        return (
+          <Select.Option key={i} value={value} disabled={disabled}>
+            {label}
+          </Select.Option>
+        );
+      })}
+    </Select>
   );
 };
 

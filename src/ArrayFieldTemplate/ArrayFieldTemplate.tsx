@@ -161,8 +161,8 @@ const DefaultFixedArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
 
 const DefaultNormalArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
   return (
-    <div elevation={2}>
-      <Card p={2}>
+    <div>
+      <Card>
         <ArrayFieldTitle
           key={`array-field-title-${props.idSchema.$id}`}
           TitleField={props.TitleField}

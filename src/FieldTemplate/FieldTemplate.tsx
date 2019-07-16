@@ -11,9 +11,18 @@ const FieldTemplate = ({
   rawErrors = [],
   rawHelp,
   rawDescription,
+  required,
+  schema,
+  label,
 }: FieldTemplateProps) => {
   return (
-    <Form.Item validateStatus={rawErrors.length ? error : ''}>
+    <Form.Item
+      validateStatus={rawErrors.length ? 'error' : ''}
+      required={required}
+      label={label || schema.title}
+      htmlFor={id}
+      id={id}
+    >
       {children}
       {displayLabel && rawDescription ? (
         <Typography variant="caption" color="textSecondary">
@@ -31,7 +40,7 @@ const FieldTemplate = ({
           })}
         </List>
       )}
-      {rawHelp && <Tooltip id={id}>{rawHelp}</Tooltip>}
+      {rawHelp && <Tooltip>{rawHelp}</Tooltip>}
     </Form.Item>
   );
 };

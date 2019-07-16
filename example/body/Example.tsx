@@ -1,8 +1,9 @@
 import React from 'react';
-import { Typography, Button, Card } from 'antd';
+import { Typography, Button, Card, Layout, Form as AntdForm } from 'antd';
 import { JSONSchema6 } from 'json-schema';
 import Source from './Source';
 import styles from './Example.less';
+import ExampleForm from './ExampleForm';
 import Form from '../../src';
 
 const liveSettingsSchema: JSONSchema6 = {
@@ -12,6 +13,8 @@ const liveSettingsSchema: JSONSchema6 = {
     disabled: { type: 'boolean', title: 'Disable whole form' },
   },
 };
+
+const { Header, Footer, Sider, Content } = Layout;
 
 class Example extends React.Component<any, any> {
   state = {
@@ -67,7 +70,7 @@ class Example extends React.Component<any, any> {
     const { schema, uiSchema, formData, liveSettings, validate } = this.state;
 
     return (
-      <div className={styles.root}>
+      <Layout className={styles.root}>
         <>
           <Typography component="h4" variant="h4">
             {title}
@@ -102,34 +105,21 @@ class Example extends React.Component<any, any> {
             </div>
           </div>
           <div className={styles.display}>
-            <Card p={2}>
-              <Form
+            <Card>
+              <ExampleForm
                 schema={schema}
                 uiSchema={uiSchema}
                 formData={formData}
                 onSubmit={this.onSubmit}
-                onChange={this.onFormChanged}
-                liveValidate={liveSettings.validate}
-                disabled={liveSettings.disabled}
+                onCancel={this.onCancel}
+                onFormChanged={this.onFormChanged}
+                liveSettings={liveSettings}
                 validate={validate}
-              >
-                <Card mt={2}>
-                  <Button
-                    variant="contained"
-                    color="default"
-                    onClick={this.onCancel}
-                  >
-                    Cancel
-                  </Button>
-                  <Button variant="contained" color="primary" type="submit">
-                    Submit
-                  </Button>
-                </Card>
-              </Form>
+              />
             </Card>
           </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 }
