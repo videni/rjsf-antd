@@ -5,8 +5,6 @@ import {
   getDefaultRegistry,
 } from 'react-jsonschema-form/lib/utils';
 
-import { Card } from 'antd';
-
 import { ArrayFieldTemplateProps, IdSchema } from 'react-jsonschema-form';
 
 import AddButton from '../AddButton/AddButton';
@@ -75,16 +73,9 @@ const DefaultArrayItem = (props: any) => {
 
   return (
     <div container={true} key={props.index} alignItems="center">
-      <div item={true} xs={true}>
-        <Card mb={2}>
-          <div elevation={2}>
-            <Card p={2}>{props.children}</Card>
-          </div>
-        </Card>
-      </div>
-
+      <div>{props.children}</div>
       {props.hasToolbar && (
-        <div item={true}>
+        <div>
           {(props.hasMoveUp || props.hasMoveDown) && (
             <IconButton
               icon="arrow-up"
@@ -162,44 +153,40 @@ const DefaultFixedArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
 const DefaultNormalArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
   return (
     <div>
-      <Card>
-        <ArrayFieldTitle
-          key={`array-field-title-${props.idSchema.$id}`}
-          TitleField={props.TitleField}
+      <ArrayFieldTitle
+        key={`array-field-title-${props.idSchema.$id}`}
+        TitleField={props.TitleField}
+        idSchema={props.idSchema}
+        title={props.uiSchema['ui:title'] || props.title}
+        required={props.required}
+      />
+
+      {(props.uiSchema['ui:description'] || props.schema.description) && (
+        <ArrayFieldDescription
+          key={`array-field-description-${props.idSchema.$id}`}
+          DescriptionField={props.DescriptionField}
           idSchema={props.idSchema}
-          title={props.uiSchema['ui:title'] || props.title}
-          required={props.required}
+          description={
+            props.uiSchema['ui:description'] || props.schema.description
+          }
         />
+      )}
 
-        {(props.uiSchema['ui:description'] || props.schema.description) && (
-          <ArrayFieldDescription
-            key={`array-field-description-${props.idSchema.$id}`}
-            DescriptionField={props.DescriptionField}
-            idSchema={props.idSchema}
-            description={
-              props.uiSchema['ui:description'] || props.schema.description
-            }
-          />
-        )}
+      <div key={`array-item-list-${props.idSchema.$id}`}>
+        {props.items && props.items.map(p => DefaultArrayItem(p))}
 
-        <div container={true} key={`array-item-list-${props.idSchema.$id}`}>
-          {props.items && props.items.map(p => DefaultArrayItem(p))}
-
-          {props.canAdd && (
-            <div container={true} justify="flex-end">
-              <div item={true}>
-                <Card>
-                  <AddButton
-                    className="array-item-add"
-                    onClick={props.onAddClick}
-                    disabled={props.disabled || props.readonly}
-                  />
-                </Card>
-              </div>
+        {props.canAdd && (
+          <div justify="flex-end">
+            <div item={true}>
+              <AddButton
+                className="array-item-add"
+                onClick={props.onAddClick}
+                disabled={props.disabled || props.readonly}
+              />
             </div>
-          )}
-        </div>
-      </Card>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
