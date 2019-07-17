@@ -1,17 +1,24 @@
 import React from 'react';
-
 import {
   isMultiSelect,
   getDefaultRegistry,
 } from 'react-jsonschema-form/lib/utils';
-
-import { ArrayFieldTemplateProps, IdSchema } from 'react-jsonschema-form';
-
+import {
+  ArrayFieldTemplateProps,
+  FieldProps,
+  IdSchema,
+} from 'react-jsonschema-form';
 import AddButton from '../AddButton/AddButton';
 import IconButton from '../IconButton/IconButton';
+import { JSONSchema6 } from 'json-schema';
 
-const ArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
-  const { schema, registry = getDefaultRegistry() } = props;
+const ArrayFieldTemplate: React.FC<ArrayFieldTemplateProps> = (
+  props: ArrayFieldTemplateProps
+) => {
+  const {
+    schema,
+    registry = getDefaultRegistry(),
+  }: { schema: JSONSchema6; registry: FieldProps['registry'] } = props;
 
   if (isMultiSelect(schema, registry.definitions)) {
     return <DefaultFixedArrayFieldTemplate {...props} />;
@@ -27,17 +34,16 @@ type ArrayFieldTitleProps = {
   required: boolean;
 };
 
-const ArrayFieldTitle = ({
-  TitleField,
-  idSchema,
-  title,
-  required,
-}: ArrayFieldTitleProps) => {
+const ArrayFieldTitle: React.FC<ArrayFieldTitleProps> = (
+  props: ArrayFieldTitleProps
+) => {
+  const { TitleField, idSchema, title, required }: ArrayFieldTitleProps = props;
+
   if (!title) {
     return <div />;
   }
 
-  const id = `${idSchema.$id}__title`;
+  const id: string = `${idSchema.$id}__title`;
 
   return <TitleField id={id} title={title} required={required} />;
 };
@@ -48,23 +54,27 @@ type ArrayFieldDescriptionProps = {
   description: string;
 };
 
-const ArrayFieldDescription = ({
-  DescriptionField,
-  idSchema,
-  description,
-}: ArrayFieldDescriptionProps) => {
+const ArrayFieldDescription: React.FC<ArrayFieldDescriptionProps> = (
+  props: ArrayFieldDescriptionProps
+) => {
+  const {
+    DescriptionField,
+    idSchema,
+    description,
+  }: ArrayFieldDescriptionProps = props;
+
   if (!description) {
     return <div />;
   }
 
-  const id = `${idSchema.$id}__description`;
+  const id: string = `${idSchema.$id}__description`;
 
   return <DescriptionField id={id} description={description} />;
 };
 
 // Used in the two templates
-const DefaultArrayItem = (props: any) => {
-  const btnStyle = {
+const DefaultArrayItem: React.FC<any> = props => {
+  const btnStyle: object = {
     flex: 1,
     paddingLeft: 6,
     paddingRight: 6,
@@ -72,7 +82,7 @@ const DefaultArrayItem = (props: any) => {
   };
 
   return (
-    <div container={true} key={props.index} alignItems="center">
+    <div key={props.index} alignItems="center">
       <div>{props.children}</div>
       {props.hasToolbar && (
         <div>
@@ -112,7 +122,9 @@ const DefaultArrayItem = (props: any) => {
   );
 };
 
-const DefaultFixedArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
+const DefaultFixedArrayFieldTemplate: React.FC<ArrayFieldTemplateProps> = (
+  props: ArrayFieldTemplateProps
+) => {
   return (
     <fieldset className={props.className}>
       <ArrayFieldTitle
@@ -150,7 +162,9 @@ const DefaultFixedArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
   );
 };
 
-const DefaultNormalArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
+const DefaultNormalArrayFieldTemplate: React.FC<
+  ArrayFieldTemplateProps
+> = props => {
   return (
     <div>
       <ArrayFieldTitle

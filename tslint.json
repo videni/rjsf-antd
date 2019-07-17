@@ -4,10 +4,7 @@
     "no-empty-interface": true,
     "no-parameter-reassignment": true,
     "no-var-requires": true,
-    "curly": [
-      true,
-      "ignore-same-line"
-    ],
+    "curly": [true, "ignore-same-line"],
     "no-duplicate-super": true,
     "no-empty": true,
     "no-eval": true,
@@ -15,11 +12,7 @@
     "no-var-keyword": true,
     "triple-equals": true,
     "use-isnan": true,
-    "indent": [
-      true,
-      "spaces",
-      2
-    ],
+    "indent": [true, "spaces", 2],
     "class-name": true,
     "import-spacing": true,
     "new-parens": true,
@@ -34,9 +27,7 @@
     "typedef": [
       true,
       "call-signature",
-      "arrow-call-signature",
       "parameter",
-      "arrow-parameter",
       "property-declaration",
       "variable-declaration",
       "member-variable-declaration",
@@ -70,10 +61,6 @@
     ]
   },
   "linterOptions": {
-    "exclude": [
-      "node_modules",
-      "lib",
-      "*.json"
-    ]
+    "exclude": ["node_modules", "lib", "*.json"]
   }
 }

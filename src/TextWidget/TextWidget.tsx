@@ -9,29 +9,28 @@ const TextWidget = ({
   required,
   readonly,
   disabled,
-  label,
   value,
   onChange,
   onBlur,
   onFocus,
   autofocus,
   options,
-  schema,
 }: WidgetProps) => {
   const _onChange = ({
     target: { value },
-  }: React.ChangeEvent<HTMLInputElement>) =>
+  }: React.ChangeEvent<HTMLInputElement>): void =>
     onChange(value === '' ? options.emptyValue : value);
-  const _onBlur = ({ target: { value } }: React.FocusEvent<HTMLInputElement>) =>
-    onBlur(id, value);
+
+  const _onBlur = ({
+    target: { value },
+  }: React.FocusEvent<HTMLInputElement>): void => onBlur(id, value);
   const _onFocus = ({
     target: { value },
-  }: React.FocusEvent<HTMLInputElement>) => onFocus(id, value);
+  }: React.FocusEvent<HTMLInputElement>): void => onFocus(id, value);
 
   return (
     <Input
       autoFocus={autofocus}
-      label={label || schema.title}
       required={required}
       disabled={disabled || readonly}
       name={name}
