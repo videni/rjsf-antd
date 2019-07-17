@@ -15,6 +15,7 @@ const TextWidget = ({
   onFocus,
   autofocus,
   options,
+  schema,
 }: WidgetProps) => {
   const _onChange = ({
     target: { value },
@@ -28,8 +29,15 @@ const TextWidget = ({
     target: { value },
   }: React.FocusEvent<HTMLInputElement>): void => onFocus(id, value);
 
+  if (schema.type === 'number') {
+    options.type = 'number';
+  } else {
+    options.type = 'text';
+  }
+
   return (
     <Input
+      {...options}
       autoFocus={autofocus}
       required={required}
       disabled={disabled || readonly}

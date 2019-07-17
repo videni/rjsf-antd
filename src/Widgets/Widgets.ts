@@ -6,6 +6,7 @@ import RangeWidget from '../RangeWidget/RangeWidget';
 import SelectWidget from '../SelectWidget/SelectWidget';
 import TextareaWidget from '../TextareaWidget/TextareaWidget';
 import TextWidget from '../TextWidget/TextWidget';
+import UpDownWidget from '../UpDownWidget/UpDownWidget';
 
 export default {
   CheckboxWidget,
@@ -16,4 +17,5 @@ export default {
   SelectWidget,
   TextareaWidget,
   TextWidget,
+  UpDownWidget,
 };
