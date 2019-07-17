@@ -1,18 +1,14 @@
 import React from 'react';
-
-import { Form, Radio } from 'antd';
-
+import { Radio } from 'antd';
 import { WidgetProps } from 'react-jsonschema-form';
+import { RadioChangeEvent } from 'antd/es/radio/interface';
 
 const RadioWidget = ({
   id,
-  schema,
   options,
   value,
-  required,
   disabled,
   readonly,
-  label,
   onChange,
   onBlur,
   onFocus,
@@ -21,21 +17,20 @@ const RadioWidget = ({
   const name = Math.random().toString();
   const { enumOptions, enumDisabled } = options;
 
-  const _onChange = ({}, value: any) =>
-    onChange(schema.type === 'boolean' ? value !== 'false' : value);
+  const _onChange = (e: RadioChangeEvent): void => {
+    onChange(e.target.value);
+  };
+
   const _onBlur = ({ target: { value } }: React.FocusEvent<HTMLInputElement>) =>
     onBlur(id, value);
   const _onFocus = ({
     target: { value },
   }: React.FocusEvent<HTMLInputElement>) => onFocus(id, value);
 
-  const row = options ? options.inline : false;
-
   return (
     <Radio.Group
       name={name}
-      value={`${value}`}
-      row={row}
+      value={value}
       onChange={_onChange}
       onBlur={_onBlur}
       onFocus={_onFocus}
@@ -44,16 +39,15 @@ const RadioWidget = ({
         const itemDisabled =
           enumDisabled && enumDisabled.indexOf(option.value) !== -1;
 
-        const radio = (
+        return (
           <Radio
-            label={`${option.label}`}
-            value={`${option.value}`}
+            value={option.value}
             key={i}
             disabled={disabled || itemDisabled || readonly}
-          />
+          >
+            {`${option.label}`}
+          </Radio>
         );
-
-        return radio;
       })}
     </Radio.Group>
   );
