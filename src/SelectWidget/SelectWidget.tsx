@@ -12,18 +12,17 @@ const SelectWidget = (props: any) => {
     autofocus,
     onChange,
     onBlur,
-    onFocus,
+    onFocus
   } = props;
 
   const {
     enumOptions,
-    enumDisabled,
+    enumDisabled
   }: { enumOptions: object[]; enumDisabled: string[] } = options;
 
   let mode = multiple ? 'multiple' : 'default';
-  if (options.mode) {
-    mode = options.mode;
-  }
+
+  mode = options.mode || mode;
 
   const _onChange = (value: any): void => {
     onChange(value);

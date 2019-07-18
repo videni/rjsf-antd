@@ -6,5 +6,5 @@ export default {
   title: 'Multiple Choice',
   schema,
   uiSchema,
-  formData,
+  formData
 };

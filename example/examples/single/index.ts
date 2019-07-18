@@ -6,5 +6,5 @@ export default {
   title: 'Single',
   schema,
   uiSchema,
-  formData,
+  formData
 };

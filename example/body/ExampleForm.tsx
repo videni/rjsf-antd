@@ -12,7 +12,7 @@ const ExampleForm = props => {
     onCancel,
     onFormChanged,
     liveSettings,
-    validate,
+    validate
   } = props;
 
   return (

@@ -7,7 +7,7 @@ import {
   Divider,
   Form as AntdForm,
   Row,
-  Col,
+  Col
 } from 'antd';
 import { JSONSchema6 } from 'json-schema';
 import Source from './Source';
@@ -19,8 +19,8 @@ const liveSettingsSchema: JSONSchema6 = {
   type: 'object',
   properties: {
     validate: { type: 'boolean', title: 'Live validation' },
-    disabled: { type: 'boolean', title: 'Disable whole form' },
-  },
+    disabled: { type: 'boolean', title: 'Disable whole form' }
+  }
 };
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -30,19 +30,19 @@ class Example extends React.Component<any, any> {
     ...this.props.data,
     liveSettings: {
       validate: true,
-      disabled: false,
-    },
+      disabled: false
+    }
   };
 
   componentDidCatch() {
     this.setState({
-      [this.state.backType]: this.state.backSource,
+      [this.state.backType]: this.state.backSource
     });
   }
 
   componentWillReceiveProps = ({ data }) => {
     this.setState({
-      ...data,
+      ...data
     });
   };
 
@@ -50,7 +50,7 @@ class Example extends React.Component<any, any> {
     this.setState({
       [type]: value,
       backSource: this.state[type],
-      backType: type,
+      backType: type
     });
   };
 
@@ -67,7 +67,7 @@ class Example extends React.Component<any, any> {
     const { data } = this.props;
 
     this.setState({
-      ...data,
+      ...data
     });
   };
 

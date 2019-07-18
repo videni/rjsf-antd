@@ -6,5 +6,5 @@ export default {
   title: 'Budget',
   schema,
   uiSchema,
-  formData,
+  formData
 };

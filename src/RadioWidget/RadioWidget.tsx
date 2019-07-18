@@ -8,7 +8,7 @@ const RadioWidget = ({
   value,
   disabled,
   readonly,
-  onChange,
+  onChange
 }: WidgetProps) => {
   // Generating a unique field name to identify this set of radio buttons
   const name = Math.random().toString();
@@ -21,7 +21,7 @@ const RadioWidget = ({
   return (
     <Radio.Group name={name} value={value} onChange={_onChange}>
       {(enumOptions as object[]).map((option: any, i: number) => {
-        const itemDisabled =
+        const itemDisabled: any =
           enumDisabled &&
           (enumDisabled as string[]).indexOf(option.value) !== -1;
 

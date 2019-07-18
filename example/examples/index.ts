@@ -15,5 +15,5 @@ export default {
   multipleChoice,
   simple,
   single,
-  validation,
+  validation
 };

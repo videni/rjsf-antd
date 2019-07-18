@@ -8,12 +8,15 @@ exports.basicConfig = {
     path: path.join(__dirname, '../build'),
     filename: '[name].js',
     chunkFilename: '[name].js',
-    publicPath: '/',
+    publicPath: '/'
   },
   devtool: 'module-eval-source-map',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
-  },
+    alias: {
+      '@': path.resolve(__dirname, '../src')
+    }
+  }
 };
 
 /* rules */
@@ -21,7 +24,7 @@ exports.rules = [
   {
     test: /.*\.jsx?$/,
     use: ['babel-loader'],
-    exclude: /(node_modules|mocha|chai)/,
+    exclude: /(node_modules|mocha|chai)/
   },
   {
     test: /.*\.tsx?$/,
@@ -36,15 +39,15 @@ exports.rules = [
               {
                 libraryName: 'antd',
                 libraryDirectory: 'es',
-                style: 'css',
-              },
-            ],
-          ],
-        },
+                style: 'css'
+              }
+            ]
+          ]
+        }
       },
-      'ts-loader',
+      'ts-loader'
     ],
-    exclude: /node_modules/,
+    exclude: /node_modules/
   },
   {
     test: /.*\.less$/,
@@ -54,25 +57,25 @@ exports.rules = [
         loader: 'css-loader',
         options: {
           modules: {
-            localIdentName: '[path][name]__[local]___[hash:base64:5]',
-          },
-        },
+            localIdentName: '[path][name]__[local]___[hash:base64:5]'
+          }
+        }
       },
-      'less-loader',
+      'less-loader'
     ],
-    include: /(src|lib|example)/,
+    include: /(src|lib|example)/
   },
   {
     test: /.*\.css/,
     use: ['style-loader', 'css-loader'],
-    include: /node_modules/,
-  },
+    include: /node_modules/
+  }
 ];
 
 /* plugins */
 exports.plugins = [
   new webpack.IgnorePlugin({
     resourceRegExp: /^\.\/locale$/,
-    contextRegExp: /moment$/,
-  }),
+    contextRegExp: /moment$/
+  })
 ];

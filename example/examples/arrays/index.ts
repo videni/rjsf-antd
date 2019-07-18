@@ -6,5 +6,5 @@ export default {
   title: 'Arrays',
   schema,
   uiSchema,
-  formData,
+  formData
 };

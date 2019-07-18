@@ -6,5 +6,5 @@ export default {
   title: 'Numbers',
   schema,
   uiSchema,
-  formData,
+  formData
 };

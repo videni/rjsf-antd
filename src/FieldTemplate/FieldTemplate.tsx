@@ -13,7 +13,7 @@ const FieldTemplate = ({
   rawDescription,
   required,
   schema,
-  label,
+  label
 }: FieldTemplateProps) => {
   return (
     <Form.Item

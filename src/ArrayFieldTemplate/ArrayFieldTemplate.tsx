@@ -1,38 +1,37 @@
 import React from 'react';
 import {
   isMultiSelect,
-  getDefaultRegistry,
+  getDefaultRegistry
 } from 'react-jsonschema-form/lib/utils';
 import {
   ArrayFieldTemplateProps,
   FieldProps,
-  IdSchema,
+  IdSchema
 } from 'react-jsonschema-form';
-import AddButton from '../AddButton/AddButton';
-import IconButton from '../IconButton/IconButton';
 import { JSONSchema6 } from 'json-schema';
+import AddButton from '@/AddButton/AddButton';
+import IconButton from '@/IconButton/IconButton';
 
 const ArrayFieldTemplate: React.FC<ArrayFieldTemplateProps> = (
   props: ArrayFieldTemplateProps
 ) => {
   const {
     schema,
-    registry = getDefaultRegistry(),
+    registry = getDefaultRegistry()
   }: { schema: JSONSchema6; registry: FieldProps['registry'] } = props;
 
   if (isMultiSelect(schema, registry.definitions)) {
     return <DefaultFixedArrayFieldTemplate {...props} />;
-  } else {
-    return <DefaultNormalArrayFieldTemplate {...props} />;
   }
+  return <DefaultNormalArrayFieldTemplate {...props} />;
 };
 
-type ArrayFieldTitleProps = {
+interface ArrayFieldTitleProps {
   TitleField: any;
   idSchema: IdSchema;
   title: string;
   required: boolean;
-};
+}
 
 const ArrayFieldTitle: React.FC<ArrayFieldTitleProps> = (
   props: ArrayFieldTitleProps
@@ -43,16 +42,16 @@ const ArrayFieldTitle: React.FC<ArrayFieldTitleProps> = (
     return <div />;
   }
 
-  const id: string = `${idSchema.$id}__title`;
+  const id = `${idSchema.$id}__title`;
 
   return <TitleField id={id} title={title} required={required} />;
 };
 
-type ArrayFieldDescriptionProps = {
+interface ArrayFieldDescriptionProps {
   DescriptionField: any;
   idSchema: IdSchema;
   description: string;
-};
+}
 
 const ArrayFieldDescription: React.FC<ArrayFieldDescriptionProps> = (
   props: ArrayFieldDescriptionProps
@@ -60,14 +59,14 @@ const ArrayFieldDescription: React.FC<ArrayFieldDescriptionProps> = (
   const {
     DescriptionField,
     idSchema,
-    description,
+    description
   }: ArrayFieldDescriptionProps = props;
 
   if (!description) {
     return <div />;
   }
 
-  const id: string = `${idSchema.$id}__description`;
+  const id = `${idSchema.$id}__description`;
 
   return <DescriptionField id={id} description={description} />;
 };
@@ -78,42 +77,54 @@ const DefaultArrayItem: React.FC<any> = props => {
     flex: 1,
     paddingLeft: 6,
     paddingRight: 6,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   };
+  const {
+    index,
+    children,
+    hasMoveUp,
+    hasMoveDown,
+    disabled,
+    readonly,
+    onDropIndexClick,
+    hasToolbar,
+    onReorderClick,
+    hasRemove
+  } = props;
 
   return (
-    <div key={props.index}>
-      <div>{props.children}</div>
-      {props.hasToolbar && (
+    <div key={index}>
+      <div>{children}</div>
+      {hasToolbar && (
         <div>
-          {(props.hasMoveUp || props.hasMoveDown) && (
+          {(hasMoveUp || hasMoveDown) && (
             <IconButton
               icon="arrow-up"
               className="array-item-move-up"
               tabIndex={-1}
               style={btnStyle}
-              disabled={props.disabled || props.readonly || !props.hasMoveUp}
-              onClick={props.onReorderClick(props.index, props.index - 1)}
+              disabled={disabled || readonly || !hasMoveUp}
+              onClick={onReorderClick(index, index - 1)}
             />
           )}
 
-          {(props.hasMoveUp || props.hasMoveDown) && (
+          {(hasMoveUp || hasMoveDown) && (
             <IconButton
               icon="arrow-down"
               tabIndex={-1}
               style={btnStyle}
-              disabled={props.disabled || props.readonly || !props.hasMoveDown}
-              onClick={props.onReorderClick(props.index, props.index + 1)}
+              disabled={disabled || readonly || !hasMoveDown}
+              onClick={onReorderClick(index, index + 1)}
             />
           )}
 
-          {props.hasRemove && (
+          {hasRemove && (
             <IconButton
               icon="remove"
               tabIndex={-1}
               style={btnStyle}
-              disabled={props.disabled || props.readonly}
-              onClick={props.onDropIndexClick(props.index)}
+              disabled={disabled || readonly}
+              onClick={onDropIndexClick(index)}
             />
           )}
         </div>
@@ -125,37 +136,52 @@ const DefaultArrayItem: React.FC<any> = props => {
 const DefaultFixedArrayFieldTemplate: React.FC<ArrayFieldTemplateProps> = (
   props: ArrayFieldTemplateProps
 ) => {
+  const {
+    className,
+    TitleField,
+    idSchema,
+    title,
+    uiSchema,
+    schema,
+    items,
+    canAdd,
+    required,
+    onAddClick,
+    disabled,
+    readonly
+  } = props;
+
   return (
-    <fieldset className={props.className}>
+    <fieldset className={className}>
       <ArrayFieldTitle
-        key={`array-field-title-${props.idSchema.$id}`}
-        TitleField={props.TitleField}
-        idSchema={props.idSchema}
-        title={props.uiSchema['ui:title'] || props.title}
-        required={props.required}
+        key={`array-field-title-${idSchema.$id}`}
+        TitleField={TitleField}
+        idSchema={idSchema}
+        title={uiSchema['ui:title'] || title}
+        required={required}
       />
 
-      {(props.uiSchema['ui:description'] || props.schema.description) && (
+      {(uiSchema['ui:description'] || schema.description) && (
         <div
           className="field-description"
-          key={`field-description-${props.idSchema.$id}`}
+          key={`field-description-${idSchema.$id}`}
         >
-          {props.uiSchema['ui:description'] || props.schema.description}
+          {uiSchema['ui:description'] || schema.description}
         </div>
       )}
 
       <div
         className="row array-item-list"
-        key={`array-item-list-${props.idSchema.$id}`}
+        key={`array-item-list-${idSchema.$id}`}
       >
-        {props.items && props.items.map(DefaultArrayItem)}
+        {items && items.map(DefaultArrayItem)}
       </div>
 
-      {props.canAdd && (
+      {canAdd && (
         <AddButton
           className="array-item-add"
-          onClick={props.onAddClick}
-          disabled={props.disabled || props.readonly}
+          onClick={onAddClick}
+          disabled={disabled || readonly}
         />
       )}
     </fieldset>
@@ -165,35 +191,48 @@ const DefaultFixedArrayFieldTemplate: React.FC<ArrayFieldTemplateProps> = (
 const DefaultNormalArrayFieldTemplate: React.FC<
   ArrayFieldTemplateProps
 > = props => {
+  const {
+    TitleField,
+    idSchema,
+    title,
+    required,
+    uiSchema,
+    schema,
+    items,
+    canAdd,
+    onAddClick,
+    disabled,
+    readonly,
+    DescriptionField
+  } = props;
+
   return (
     <div>
       <ArrayFieldTitle
         key={`array-field-title-${props.idSchema.$id}`}
-        TitleField={props.TitleField}
-        idSchema={props.idSchema}
-        title={props.uiSchema['ui:title'] || props.title}
-        required={props.required}
+        TitleField={TitleField}
+        idSchema={idSchema}
+        title={uiSchema['ui:title'] || title}
+        required={required}
       />
 
-      {(props.uiSchema['ui:description'] || props.schema.description) && (
+      {(uiSchema['ui:description'] || schema.description) && (
         <ArrayFieldDescription
-          key={`array-field-description-${props.idSchema.$id}`}
-          DescriptionField={props.DescriptionField}
-          idSchema={props.idSchema}
-          description={
-            props.uiSchema['ui:description'] || props.schema.description
-          }
+          key={`array-field-description-${idSchema.$id}`}
+          DescriptionField={DescriptionField}
+          idSchema={idSchema}
+          description={uiSchema['ui:description'] || schema.description}
         />
       )}
 
-      <div key={`array-item-list-${props.idSchema.$id}`}>
-        {props.items && props.items.map(p => DefaultArrayItem(p))}
-        {props.canAdd && (
+      <div key={`array-item-list-${idSchema.$id}`}>
+        {items && items.map(p => DefaultArrayItem(p))}
+        {canAdd && (
           <div>
             <AddButton
               className="array-item-add"
-              onClick={props.onAddClick}
-              disabled={props.disabled || props.readonly}
+              onClick={onAddClick}
+              disabled={disabled || readonly}
             />
           </div>
         )}

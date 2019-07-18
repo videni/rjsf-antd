@@ -7,7 +7,7 @@ const mappings: any = {
   remove: <Icon type="delete" />,
   plus: <Icon type="plus" />,
   'arrow-up': <Icon type="arrow-up" />,
-  'arrow-down': <Icon type="arrow-down" />,
+  'arrow-down': <Icon type="arrow-down" />
 };
 
 type IconButtonProps = ButtonProps & {
@@ -15,7 +15,7 @@ type IconButtonProps = ButtonProps & {
 };
 
 const IconButton = (props: IconButtonProps) => {
-  const { icon, className, ...otherProps } = props;
+  const { icon, ...otherProps } = props;
 
   return (
     <Button {...otherProps} size="small">

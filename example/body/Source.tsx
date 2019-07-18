@@ -15,12 +15,12 @@ const cmOptions = {
   mode: {
     name: 'javascript',
     json: true,
-    statementIndent: 2,
+    statementIndent: 2
   },
   lineNumbers: true,
   lineWrapping: true,
   indentWithTabs: false,
-  tabSize: 2,
+  tabSize: 2
 };
 
 const isValid = value => {
@@ -42,7 +42,7 @@ class Source extends React.Component<any, any> {
 
     this.state = {
       source,
-      valid: isValid(source),
+      valid: isValid(source)
     };
   }
 
@@ -51,7 +51,7 @@ class Source extends React.Component<any, any> {
 
     this.setState({
       source,
-      valid: isValid(source),
+      valid: isValid(source)
     });
   };
 
@@ -65,7 +65,7 @@ class Source extends React.Component<any, any> {
 
     this.setState({
       valid: parsed,
-      source: value,
+      source: value
     });
 
     if (parsed && onChange) {

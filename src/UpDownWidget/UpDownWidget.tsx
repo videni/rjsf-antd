@@ -16,17 +16,17 @@ const UpDownWidget = (props: WidgetProps) => {
     onFocus,
     autofocus,
     options,
-    schema,
+    schema
   } = props;
 
   const _onChange = (value: number | undefined): void => onChange(value);
 
   const _onBlur = ({
-    target: { value },
+    target: { value }
   }: React.FocusEvent<HTMLInputElement>): void => onBlur(id, value);
 
   const _onFocus = ({
-    target: { value },
+    target: { value }
   }: React.FocusEvent<HTMLInputElement>): void => onFocus(id, value);
 
   // If multipleOf is defined, use this as the step value. This mainly improves
@@ -51,7 +51,6 @@ const UpDownWidget = (props: WidgetProps) => {
       required={required}
       type="number"
       disabled={disabled || readonly}
-      name={name}
       value={value}
       onChange={_onChange}
       onBlur={_onBlur}

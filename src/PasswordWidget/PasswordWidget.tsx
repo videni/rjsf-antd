@@ -12,16 +12,16 @@ const PasswordWidget = ({
   onBlur,
   onChange,
   options,
-  autofocus,
+  autofocus
 }: WidgetProps) => {
   const _onChange = ({
-    target: { value },
+    target: { value }
   }: React.ChangeEvent<HTMLInputElement>) =>
     onChange(value === '' ? options.emptyValue : value);
   const _onBlur = ({ target: { value } }: React.FocusEvent<HTMLInputElement>) =>
     onBlur(id, value);
   const _onFocus = ({
-    target: { value },
+    target: { value }
   }: React.FocusEvent<HTMLInputElement>) => onFocus(id, value);
 
   return (

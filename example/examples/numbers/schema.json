@@ -13,20 +13,12 @@
     "numberEnum": {
       "type": "number",
       "title": "Number enum",
-      "enum": [
-        1,
-        2,
-        3
-      ]
+      "enum": [1, 2, 3]
     },
     "numberEnumRadio": {
       "type": "number",
       "title": "Number enum",
-      "enum": [
-        1,
-        2,
-        3
-      ]
+      "enum": [1, 2, 3]
     },
     "integerRange": {
       "title": "Integer range",

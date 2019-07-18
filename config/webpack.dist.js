@@ -14,22 +14,22 @@ const config = {
     publicPath: '../dist/',
     filename: 'rjsf-antd.js',
     library: 'JSONSchemaFormAntd',
-    libraryTarget: 'umd',
+    libraryTarget: 'umd'
   },
   devtool: 'source-map',
   module: {
-    rules,
+    rules
   },
   plugins,
-  externals: [nodeExternals()],
+  externals: [nodeExternals()]
 };
 
 module.exports = merge(basicConfig, config, {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
-    }),
-  ],
+        NODE_ENV: JSON.stringify('production')
+      }
+    })
+  ]
 });

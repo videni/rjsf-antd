@@ -8,5 +8,5 @@ export default {
   schema,
   uiSchema,
   formData,
-  validate,
+  validate
 };

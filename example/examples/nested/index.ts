@@ -6,5 +6,5 @@ export default {
   title: 'Nested',
   schema,
   uiSchema,
-  formData,
+  formData
 };

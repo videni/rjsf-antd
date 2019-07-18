@@ -10,7 +10,7 @@ const ObjectFieldTemplate = ({
   properties,
   required,
   uiSchema,
-  idSchema,
+  idSchema
 }: ObjectFieldTemplateProps) => {
   return (
     <>

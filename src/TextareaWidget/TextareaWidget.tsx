@@ -19,19 +19,19 @@ const TextareaWidget = ({
   onBlur,
   onFocus,
   onChange,
-  options,
+  options
 }: CustomWidgetProps) => {
   const _onChange = ({
-    target: { value },
+    target: { value }
   }: React.ChangeEvent<HTMLTextAreaElement>): void =>
     onChange(value === '' ? options.emptyValue : value);
 
   const _onBlur = ({
-    target: { value },
+    target: { value }
   }: React.FocusEvent<HTMLTextAreaElement>): void => onBlur(id, value);
 
   const _onFocus = ({
-    target: { value },
+    target: { value }
   }: React.FocusEvent<HTMLTextAreaElement>): void => onFocus(id, value);
 
   return (

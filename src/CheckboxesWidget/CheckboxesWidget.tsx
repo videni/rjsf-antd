@@ -10,21 +10,22 @@ const CheckboxesWidget = ({
   value,
   autofocus,
   readonly,
-  onChange,
+  onChange
 }: WidgetProps) => {
   const { enumOptions, enumDisabled } = options;
 
-  const _onChange = (checkedValue: Array<CheckboxValueType>): void => {
+  const _onChange = (checkedValue: CheckboxValueType[]): void => {
     onChange(checkedValue);
   };
 
   return (
     <Checkbox.Group onChange={_onChange}>
-      {(enumOptions as Array<any>).map((option: any, index: number) => {
+      {(enumOptions as any[]).map((option: any, index: number) => {
         const checked: boolean = value.indexOf(option.value) !== -1;
         const itemDisabled: any =
           enumDisabled &&
           (enumDisabled as string[]).indexOf(option.value) !== -1;
+
         return (
           <Checkbox
             id={`${id}_${index}`}

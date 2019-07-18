@@ -15,33 +15,29 @@ const TextWidget = ({
   onFocus,
   autofocus,
   options,
-  schema,
+  schema
 }: WidgetProps) => {
   const _onChange = ({
-    target: { value },
+    target: { value }
   }: React.ChangeEvent<HTMLInputElement>): void =>
     onChange(value === '' ? options.emptyValue : value);
 
   const _onBlur = ({
-    target: { value },
+    target: { value }
   }: React.FocusEvent<HTMLInputElement>): void => onBlur(id, value);
   const _onFocus = ({
-    target: { value },
+    target: { value }
   }: React.FocusEvent<HTMLInputElement>): void => onFocus(id, value);
 
-  if (schema.type === 'number') {
-    options.type = 'number';
-  } else {
-    options.type = 'text';
-  }
+  const type = schema.type === 'number' ? 'number' : 'text';
 
   return (
     <Input
       {...options}
+      type={type}
       autoFocus={autofocus}
       required={required}
       disabled={disabled || readonly}
-      name={name}
       value={value}
       onChange={_onChange}
       onBlur={_onBlur}
