@@ -19,20 +19,20 @@
     "url": "https://github.com/videni/rjsf-antd.git"
   },
   "license": "MIT",
-  "main": "dist/rjsf-antd.js.js",
-  "module": "dist/rjsf-antd.js.js",
+  "main": "dist/rjsf-antd.js",
+  "module": "dist/rjsf-antd.js",
   "typings": "dist/index.d.ts",
   "description": "Ant Design theme, fields and widgets for react-jsonschema-form",
   "files": [
-    "dist",
-    "lib"
+    "dist"
   ],
   "scripts": {
     "start": "webpack-dev-server --config ./config/webpack.dev.js --hot --color --port=5050",
     "build": "rimraf dist && cross-env NODE_ENV=production webpack --config ./config/webpack.dist.js",
     "test": "webpack-dev-server --config ./config/webpack.test.js --hot --color --port=6060",
     "lint:es": "cross-env NODE_ENV=eslint eslint ./  --fix --ext .js,.jsx,.ts,.tsx",
-    "lint:ts": "cross-env NODE_ENV=tslint tslint --fix --project ./"
+    "lint:ts": "cross-env NODE_ENV=tslint tslint --fix --project ./",
+    "prepublish": "tsc"
   },
   "peerDependencies": {
     "antd": "^3.19.5",
