@@ -12,7 +12,7 @@ const CheckboxesWidget = ({
   readonly,
   onChange,
 }: WidgetProps) => {
-  const { enumOptions, enumDisabled, inline } = options;
+  const { enumOptions, enumDisabled } = options;
 
   const _onChange = (checkedValue: Array<CheckboxValueType>): void => {
     onChange(checkedValue);
@@ -20,10 +20,11 @@ const CheckboxesWidget = ({
 
   return (
     <Checkbox.Group onChange={_onChange}>
-      {enumOptions.map((option: any, index: number) => {
-        const checked = value.indexOf(option.value) !== -1;
-        const itemDisabled =
-          enumDisabled && enumDisabled.indexOf(option.value) !== -1;
+      {(enumOptions as Array<any>).map((option: any, index: number) => {
+        const checked: boolean = value.indexOf(option.value) !== -1;
+        const itemDisabled: any =
+          enumDisabled &&
+          (enumDisabled as string[]).indexOf(option.value) !== -1;
         return (
           <Checkbox
             id={`${id}_${index}`}

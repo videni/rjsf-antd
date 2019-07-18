@@ -1,6 +1,6 @@
 {
   "name": "rjsf-antd",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Vidy Videni <vidy.videni@gmail.com>",
   "keywords": [
     "Ant Design",
@@ -19,19 +19,20 @@
     "url": "https://github.com/videni/rjsf-antd.git"
   },
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/rjsf-antd.js",
+  "main": "dist/rjsf-antd.js.js",
+  "module": "dist/rjsf-antd.js.js",
   "typings": "dist/index.d.ts",
   "description": "Ant Design theme, fields and widgets for react-jsonschema-form",
   "files": [
-    "dist"
+    "dist",
+    "lib"
   ],
   "scripts": {
     "start": "webpack-dev-server --config ./config/webpack.dev.js --hot --color --port=5050",
-    "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.dist.js",
+    "build": "rimraf dist && cross-env NODE_ENV=production webpack --config ./config/webpack.dist.js",
     "test": "webpack-dev-server --config ./config/webpack.test.js --hot --color --port=6060",
-    "eslint": "cross-env NODE_ENV=eslint eslint ./  --fix --ext .js,.jsx,.ts,.tsx",
-    "tslint": "cross-env NODE_ENV=tslint tslint --fix --project ./"
+    "lint:es": "cross-env NODE_ENV=eslint eslint ./  --fix --ext .js,.jsx,.ts,.tsx",
+    "lint:ts": "cross-env NODE_ENV=tslint tslint --fix --project ./"
   },
   "peerDependencies": {
     "antd": "^3.19.5",
@@ -85,7 +86,8 @@
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2",
-    "webpack-merge": "^4.2.1"
+    "webpack-merge": "^4.2.1",
+    "webpack-node-externals": "^1.7.2"
   },
   "husky": {
     "hooks": {

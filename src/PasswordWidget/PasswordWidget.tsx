@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input } from 'antd';
+import { Input } from 'antd';
 import { WidgetProps } from 'react-jsonschema-form';
 
 const PasswordWidget = ({
@@ -8,13 +8,11 @@ const PasswordWidget = ({
   readonly,
   disabled,
   value,
-  label,
   onFocus,
   onBlur,
   onChange,
   options,
   autofocus,
-  schema,
 }: WidgetProps) => {
   const _onChange = ({
     target: { value },

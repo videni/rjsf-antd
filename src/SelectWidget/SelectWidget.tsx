@@ -1,15 +1,11 @@
 import React from 'react';
-import { Form, Select } from 'antd';
+import { Select } from 'antd';
 // import { WidgetProps } from 'react-jsonschema-form';
 
 const SelectWidget = (props: any) => {
   const {
-    schema,
-    id,
     options,
-    label,
     multiple,
-    required,
     disabled,
     readonly,
     value,
@@ -19,20 +15,21 @@ const SelectWidget = (props: any) => {
     onFocus,
   } = props;
 
-  const { enumOptions, enumDisabled } = options;
+  const {
+    enumOptions,
+    enumDisabled,
+  }: { enumOptions: object[]; enumDisabled: string[] } = options;
+
   let mode = multiple ? 'multiple' : 'default';
   if (options.mode) {
     mode = options.mode;
   }
 
-  const _onChange = (
-    value: any,
-    option: React.ReactElement<any> | React.ReactElement<any>[]
-  ): void => {
+  const _onChange = (value: any): void => {
     onChange(value);
   };
 
-  const _onBlur = (value): void => {
+  const _onBlur = (value: any): void => {
     onBlur(value);
   };
 

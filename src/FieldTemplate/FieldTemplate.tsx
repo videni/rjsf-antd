@@ -25,12 +25,10 @@ const FieldTemplate = ({
     >
       {children}
       {displayLabel && rawDescription ? (
-        <Typography variant="caption" color="textSecondary">
-          {rawDescription}
-        </Typography>
+        <Typography>{rawDescription}</Typography>
       ) : null}
       {rawErrors.length > 0 && (
-        <List dense={true}>
+        <List>
           {rawErrors.map((error, i: number) => {
             return (
               <List.Item key={i}>

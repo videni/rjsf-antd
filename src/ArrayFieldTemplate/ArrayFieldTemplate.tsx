@@ -82,7 +82,7 @@ const DefaultArrayItem: React.FC<any> = props => {
   };
 
   return (
-    <div key={props.index} alignItems="center">
+    <div key={props.index}>
       <div>{props.children}</div>
       {props.hasToolbar && (
         <div>
@@ -188,16 +188,13 @@ const DefaultNormalArrayFieldTemplate: React.FC<
 
       <div key={`array-item-list-${props.idSchema.$id}`}>
         {props.items && props.items.map(p => DefaultArrayItem(p))}
-
         {props.canAdd && (
-          <div justify="flex-end">
-            <div item={true}>
-              <AddButton
-                className="array-item-add"
-                onClick={props.onAddClick}
-                disabled={props.disabled || props.readonly}
-              />
-            </div>
+          <div>
+            <AddButton
+              className="array-item-add"
+              onClick={props.onAddClick}
+              disabled={props.disabled || props.readonly}
+            />
           </div>
         )}
       </div>

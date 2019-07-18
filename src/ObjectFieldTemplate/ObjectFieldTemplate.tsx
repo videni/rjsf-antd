@@ -27,7 +27,7 @@ const ObjectFieldTemplate = ({
           description={description}
         />
       )}
-      {properties.map((element: any, index: number) => element.content)}
+      {properties.map((element: any) => element.content)}
     </>
   );
 };
