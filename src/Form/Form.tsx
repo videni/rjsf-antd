@@ -1,6 +1,6 @@
 import { withTheme } from 'react-jsonschema-form';
 
-import Theme from '@/Theme';
+import Theme from '../Theme';
 
 const Form = withTheme(Theme);
 

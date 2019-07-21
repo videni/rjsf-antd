@@ -13,9 +13,6 @@ exports.basicConfig = {
   devtool: 'module-eval-source-map',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
-    alias: {
-      '@': path.resolve(__dirname, '../src')
-    }
   }
 };
 

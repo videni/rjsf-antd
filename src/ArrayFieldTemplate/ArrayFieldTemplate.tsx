@@ -9,8 +9,8 @@ import {
   IdSchema
 } from 'react-jsonschema-form';
 import { JSONSchema6 } from 'json-schema';
-import AddButton from '@/AddButton/AddButton';
-import IconButton from '@/IconButton/IconButton';
+import AddButton from '../AddButton/AddButton';
+import IconButton from '../IconButton/IconButton';
 
 const ArrayFieldTemplate: React.FC<ArrayFieldTemplateProps> = (
   props: ArrayFieldTemplateProps

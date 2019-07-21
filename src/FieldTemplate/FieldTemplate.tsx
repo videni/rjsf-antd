@@ -13,8 +13,19 @@ const FieldTemplate = ({
   rawDescription,
   required,
   schema,
-  label
+  label,
 }: FieldTemplateProps) => {
+
+  // simply return children, we don't an object is wrapped in Form.Item
+  // every property should have their own Form.Item wrapper, so does array
+  if (schema.type === 'object' || schema.type === 'array') {
+    return (
+      <>
+      {children}
+      </>
+    );
+  }
+
   return (
     <Form.Item
       validateStatus={rawErrors.length ? 'error' : ''}
