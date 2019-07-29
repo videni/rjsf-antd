@@ -30,7 +30,7 @@ const FieldTemplate = ({
     <Form.Item
       validateStatus={rawErrors.length ? 'error' : ''}
       required={required}
-      label={label || schema.title}
+      label={displayLabel && schema.title}
       htmlFor={id}
       id={id}
     >

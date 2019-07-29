@@ -7,13 +7,21 @@ import { FormLabelAlign  } from 'antd/es/form/FormItem';
 import Theme from '../Theme';
 import { ColProps } from 'antd/es/grid/col';
 import classNames from 'classnames';
-import ObjectFieldTemplateContext from 'rjsf-antd/src/ObjectFieldTemplate/ObjectFieldTemplateContext';
+import ObjectFieldTemplateContext from '../ObjectFieldTemplate/ObjectFieldTemplateContext';
 
 const Form = withTheme(Theme);
 
 type layout = 'horizontal' | 'inline'| 'vertical';
 
 type ObjectFieldTemplate = React.StatelessComponent<ObjectFieldTemplateProps> | React.ComponentClass<ObjectFieldTemplateProps>;
+
+type FormContext = {
+  [key: string]: any;
+  } & {
+      objectFieldTemplates: {
+        [key: string]: ObjectFieldTemplate
+    }
+};
 
 export interface RjsfFormProps extends FormProps<any> {
   prefixCls?: string;
@@ -24,6 +32,7 @@ export interface RjsfFormProps extends FormProps<any> {
   labelCol?: ColProps;
   colon?: boolean;
   labelAlign?: FormLabelAlign;
+  formContext?: FormContext;
   objectFieldTemplates?: {
     [key: string]: ObjectFieldTemplate
   }
@@ -36,7 +45,7 @@ const RjsfForm = (props: RjsfFormProps) => {
     labelCol,
     layout,
     colon,
-    objectFieldTemplates = {}
+    objectFieldTemplates = {},
   } = props;
 
   const renderForm = ({ getPrefixCls }: ConfigConsumerProps) => {

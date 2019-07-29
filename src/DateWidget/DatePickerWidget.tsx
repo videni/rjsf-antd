@@ -17,12 +17,6 @@ const DatePickerWidget = ({
     onChange(dateString);
   }
 
-  const type = schema.type === 'number' ? 'number' : 'text';
-
-  if (type === 'number') {
-    value = isNaN(value) ? parseInt(value): value
-  }
-
   return (
     <DatePicker
       {...options}

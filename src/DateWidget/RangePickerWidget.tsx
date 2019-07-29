@@ -19,7 +19,6 @@ const RangePickerWidget = ({
   const _onChange = (dates: RangePickerValue, dateStrings: [string, string]): void =>{
 
   }
-
   const {
     showTime,
     format,
@@ -28,9 +27,7 @@ const RangePickerWidget = ({
   return (
     <RangePicker
       {...options}
-      type={type}
       autoFocus={autofocus}
-      required={required}
       disabled={disabled || readonly}
       value={value}
       onChange={_onChange}
