@@ -13,16 +13,16 @@ const DatePickerWidget = ({
   options,
   schema
 }: WidgetProps) => {
-  const _onChange = (date: moment.Moment, dateString: string): void =>{
-    onChange(dateString);
-  }
+  const _onChange = (date: moment.Moment, dateString: string): void => {
+    onChange(dateString === '' ? null : dateString);
+  };
 
   return (
     <DatePicker
       {...options}
       autoFocus={autofocus}
       disabled={disabled || readonly}
-      value={value != null ? moment(value): value}
+      value={value != null ? moment(value) : value}
       onChange={_onChange}
     />
   );

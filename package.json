@@ -1,6 +1,6 @@
 {
   "name": "rjsf-antd",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "Vidy Videni <vidy.videni@gmail.com>",
   "keywords": [
     "Ant Design",
@@ -32,7 +32,6 @@
     "clean:dist": "rimraf dist",
     "test": "webpack-dev-server --config ./config/webpack.test.js --hot --color --port=6060",
     "lint:es": "cross-env NODE_ENV=eslint eslint ./src --ext .js,.jsx,.ts,.tsx",
-    "prepublish": "tsc",
     "prettier": "pretty-quick --staged"
   },
   "peerDependencies": {
