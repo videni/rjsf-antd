@@ -1,6 +1,6 @@
 {
   "name": "rjsf-antd",
-  "version": "0.1.4",
+  "version": "0.1.5-alpha.1",
   "author": "Vidy Videni <vidy.videni@gmail.com>",
   "keywords": [
     "Ant Design",
@@ -19,37 +19,43 @@
     "url": "https://github.com/videni/rjsf-antd.git"
   },
   "license": "MIT",
-  "main": "dist/rjsf-antd.js",
-  "module": "dist/rjsf-antd.js",
-  "typings": "dist/index.d.ts",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "description": "Ant Design theme, fields and widgets for react-jsonschema-form",
   "files": [
-    "dist"
+    "dist",
+    "lib"
   ],
   "scripts": {
     "start": "webpack-dev-server --config ./config/webpack.dev.js --hot --color --port=5050",
-    "build": "npm run clean:dist && cross-env NODE_ENV=production webpack --config ./config/webpack.dist.js",
+    "build:dist": "npm run clean:dist && cross-env NODE_ENV=production webpack --config ./config/webpack.dist.js",
+    "build:lib": "rimraf lib && cross-env NODE_ENV=production babel src --out-dir lib --extensions .ts,.tsx && tsc --declaration --outDir lib/ --emitDeclarationOnly --declarationMap",
     "clean:dist": "rimraf dist",
+    "publish-to-npm": "npm run dist && npm publish",
+    "build": "npm run build:lib && npm run build:dist",
     "test": "webpack-dev-server --config ./config/webpack.test.js --hot --color --port=6060",
     "lint:es": "cross-env NODE_ENV=eslint eslint ./src --ext .js,.jsx,.ts,.tsx",
     "prettier": "pretty-quick --staged"
   },
   "peerDependencies": {
+    "@vidyvideni/react-jsonschema-form": "^1.7.1",
     "antd": "^3.19.5",
     "react": ">=16",
-    "react-dom": ">=16.7.0",
-    "@vidyvideni/react-jsonschema-form": "^1.6.1"
+    "react-dom": ">=16.7.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/plugin-proposal-do-expressions": "^7.2.0",
     "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
     "@babel/runtime": "^7.4.5",
     "@types/jest": "^24.0.15",
     "@types/json-schema": "^7.0.3",
@@ -85,7 +91,6 @@
     "react-codemirror2": "^6.0.0",
     "react-dom": "^16.8.6",
     "react-hot-loader": "^4.12.6",
-    "react-jsonschema-form": "^1.6.1",
     "rimraf": "^2.6.3",
     "style-loader": "^0.23.1",
     "ts-loader": "^6.0.4",
