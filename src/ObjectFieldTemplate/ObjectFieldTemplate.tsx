@@ -25,7 +25,7 @@ const ObjectFieldTemplate = (props: ObjectFieldTemplateProps) => {
           templates.hasOwnProperty(objectFieldTemplate)
         ) {
           const ObjectFieldTemplate = templates[objectFieldTemplate];
-          return <ObjectFieldTemplate />;
+          return <ObjectFieldTemplate {...props} />;
         }
         const uiOptions = getUiOptions(uiSchema);
 
