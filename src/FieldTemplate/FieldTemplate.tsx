@@ -1,8 +1,7 @@
 import React from 'react';
-
 import { FieldTemplateProps } from 'react-jsonschema-form';
-
 import { Form, Tooltip, List, Typography } from 'antd';
+import { isMultiSelect } from 'react-jsonschema-form/lib/utils';
 
 const FieldTemplate = ({
   id,
@@ -13,17 +12,12 @@ const FieldTemplate = ({
   rawDescription,
   required,
   schema,
-  label,
+  label
 }: FieldTemplateProps) => {
-
   // simply return children, we don't want an object is wrapped in Form.Item
-  // every property should have their own Form.Item wrapper, so does array
-  if (schema.type === 'object' || schema.type === 'array') {
-    return (
-      <>
-      {children}
-      </>
-    );
+  // every property should have their own Form.Item wrapper
+  if (schema.type === 'object') {
+    return <>{children}</>;
   }
 
   return (

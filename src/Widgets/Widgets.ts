@@ -8,6 +8,7 @@ import TextareaWidget from '../TextareaWidget/TextareaWidget';
 import TextWidget from '../TextWidget/TextWidget';
 import UpDownWidget from '../UpDownWidget/UpDownWidget';
 import RateWidget from '../RateWidget/RateWidget';
+import EmailWidget from '../EmailWidget/EmailWidget';
 
 export default {
   CheckboxWidget,
@@ -19,5 +20,6 @@ export default {
   TextareaWidget,
   TextWidget,
   UpDownWidget,
-  RateWidget
+  RateWidget,
+  EmailWidget
 };

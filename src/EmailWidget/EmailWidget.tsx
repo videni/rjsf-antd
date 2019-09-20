@@ -2,7 +2,7 @@ import React from 'react';
 import { Input } from 'antd';
 import { WidgetProps } from 'react-jsonschema-form';
 
-const TextWidget = ({
+const EmailWidget = ({
   id,
   required,
   readonly,
@@ -48,4 +48,4 @@ const TextWidget = ({
   );
 };
 
-export default TextWidget;
+export default EmailWidget;
