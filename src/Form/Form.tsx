@@ -1,26 +1,29 @@
 import React from 'react';
-import { withTheme, FormProps, ObjectFieldTemplateProps} from 'react-jsonschema-form';
+import { FormProps, ObjectFieldTemplateProps } from 'react-jsonschema-form';
 import { FormContext } from 'antd/es/form/context';
 import { ConfigConsumer, ConfigConsumerProps } from 'antd/es/config-provider';
 import omit from 'omit.js';
-import { FormLabelAlign  } from 'antd/es/form/FormItem';
+import { FormLabelAlign } from 'antd/es/form/FormItem';
 import Theme from '../Theme';
 import { ColProps } from 'antd/es/grid/col';
 import classNames from 'classnames';
 import ObjectFieldTemplateContext from '../ObjectFieldTemplate/ObjectFieldTemplateContext';
+import withTheme from '../Theme/withTheme';
 
 const Form = withTheme(Theme);
 
-type layout = 'horizontal' | 'inline'| 'vertical';
+type layout = 'horizontal' | 'inline' | 'vertical';
 
-type ObjectFieldTemplate = React.StatelessComponent<ObjectFieldTemplateProps> | React.ComponentClass<ObjectFieldTemplateProps>;
+type ObjectFieldTemplate =
+  | React.StatelessComponent<ObjectFieldTemplateProps>
+  | React.ComponentClass<ObjectFieldTemplateProps>;
 
 type FormContext = {
   [key: string]: any;
-  } & {
-      objectFieldTemplates: {
-        [key: string]: ObjectFieldTemplate
-    }
+} & {
+  objectFieldTemplates: {
+    [key: string]: ObjectFieldTemplate;
+  };
 };
 
 export interface RjsfFormProps extends FormProps<any> {
@@ -34,22 +37,27 @@ export interface RjsfFormProps extends FormProps<any> {
   labelAlign?: FormLabelAlign;
   formContext?: FormContext;
   objectFieldTemplates?: {
-    [key: string]: ObjectFieldTemplate
-  }
+    [key: string]: ObjectFieldTemplate;
+  };
 }
 
-const RjsfForm = (props: RjsfFormProps) => {
+const RjsfForm = React.forwardRef((props: RjsfFormProps, ref) => {
   const {
     wrapperCol,
     labelAlign,
     labelCol,
     layout,
     colon,
-    objectFieldTemplates = {},
+    objectFieldTemplates = {}
   } = props;
 
   const renderForm = ({ getPrefixCls }: ConfigConsumerProps) => {
-    const { prefixCls: customizePrefixCls, hideRequiredMark, className = '', layout } = props;
+    const {
+      prefixCls: customizePrefixCls,
+      hideRequiredMark,
+      className = '',
+      layout
+    } = props;
     const prefixCls = getPrefixCls('form', customizePrefixCls);
     const formClassName = classNames(
       prefixCls,
@@ -57,9 +65,9 @@ const RjsfForm = (props: RjsfFormProps) => {
         [`${prefixCls}-horizontal`]: layout === 'horizontal',
         [`${prefixCls}-vertical`]: layout === 'vertical',
         [`${prefixCls}-inline`]: layout === 'inline',
-        [`${prefixCls}-hide-required-mark`]: hideRequiredMark,
+        [`${prefixCls}-hide-required-mark`]: hideRequiredMark
       },
-      className,
+      className
     );
 
     const formProps = omit(props, [
@@ -70,21 +78,27 @@ const RjsfForm = (props: RjsfFormProps) => {
       'wrapperCol',
       'labelAlign',
       'labelCol',
-      'colon',
+      'colon'
     ]);
 
-    return <Form {...formProps} className={formClassName} />;
+    return <Form {...formProps} className={formClassName} ref={ref} />;
   };
 
   return (
     <ObjectFieldTemplateContext.Provider value={objectFieldTemplates}>
       <FormContext.Provider
-        value={{ wrapperCol, labelAlign, labelCol, vertical: layout === 'vertical', colon }}
+        value={{
+          wrapperCol,
+          labelAlign,
+          labelCol,
+          vertical: layout === 'vertical',
+          colon
+        }}
       >
         <ConfigConsumer>{renderForm}</ConfigConsumer>
       </FormContext.Provider>
     </ObjectFieldTemplateContext.Provider>
   );
-};
+});
 
 export default RjsfForm;

@@ -1,7 +1,6 @@
 import React from 'react';
 import { FieldTemplateProps } from 'react-jsonschema-form';
 import { Form, Tooltip, List, Typography } from 'antd';
-import { isMultiSelect } from 'react-jsonschema-form/lib/utils';
 
 const FieldTemplate = ({
   id,
