@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormProps, ObjectFieldTemplateProps } from 'react-jsonschema-form';
-import { FormContext } from 'antd/es/form/context';
+import  FormContext  from 'antd/es/form/context';
 import { ConfigConsumer, ConfigConsumerProps } from 'antd/es/config-provider';
 import omit from 'omit.js';
 import { FormLabelAlign } from 'antd/es/form/FormItem';
