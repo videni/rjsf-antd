@@ -1,7 +1,9 @@
 import React from 'react';
-import  RangePicker from 'antd/es/date-picker';
+import { DatePicker } from 'antd';
 import { RangePickerValue } from 'antd/es/date-picker/interface';
 import { WidgetProps } from 'react-jsonschema-form';
+
+const { RangePicker } = DatePicker;
 
 const RangePickerWidget = ({
   id,
@@ -16,13 +18,12 @@ const RangePickerWidget = ({
   options,
   schema
 }: WidgetProps) => {
-  const _onChange = (dates: RangePickerValue, dateStrings: [string, string]): void =>{
+  const _onChange = (
+    dates: RangePickerValue,
+    dateStrings: [string, string]
+  ): void => {};
 
-  }
-  const {
-    showTime,
-    format,
-  } = options;
+  const { showTime, format } = options;
 
   return (
     <RangePicker
