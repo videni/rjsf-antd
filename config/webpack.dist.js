@@ -1,6 +1,5 @@
 const path = require('path');
 const merge = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { basicConfig, rules, plugins } = require('./config');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');

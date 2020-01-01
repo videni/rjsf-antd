@@ -1,14 +1,14 @@
 import React from 'react';
 import { FormProps, ObjectFieldTemplateProps } from 'react-jsonschema-form';
-import  FormContext  from 'antd/es/form/context';
 import { ConfigConsumer, ConfigConsumerProps } from 'antd/es/config-provider';
+import FormContext from 'antd/es/form/context';
 import omit from 'omit.js';
 import { FormLabelAlign } from 'antd/es/form/FormItem';
-import Theme from '../Theme';
 import { ColProps } from 'antd/es/grid/col';
 import classNames from 'classnames';
 import ObjectFieldTemplateContext from '../ObjectFieldTemplate/ObjectFieldTemplateContext';
 import withTheme from '../Theme/withTheme';
+import Theme from '../Theme';
 
 const Form = withTheme(Theme);
 

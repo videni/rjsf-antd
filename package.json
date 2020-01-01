@@ -1,6 +1,6 @@
 {
   "name": "rjsf-antd",
-  "version": "0.1.5-alpha.2",
+  "version": "0.1.5-alpha.15",
   "author": "Vidy Videni <vidy.videni@gmail.com>",
   "keywords": [
     "Ant Design",
@@ -20,19 +20,21 @@
   },
   "license": "MIT",
   "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "module": "es/index.js",
+  "typings": "es/index.d.ts",
   "description": "Ant Design theme, fields and widgets for react-jsonschema-form",
   "files": [
     "dist",
-    "lib"
+    "lib",
+    "es"
   ],
   "scripts": {
     "start": "webpack-dev-server --config ./config/webpack.dev.js --hot --color --port=5050",
     "build:dist": "npm run clean:dist && cross-env NODE_ENV=production webpack --config ./config/webpack.dist.js",
-    "build:lib": "rimraf lib && cross-env NODE_ENV=production babel src --out-dir lib --extensions .ts,.tsx && tsc --declaration --outDir lib/ --emitDeclarationOnly --declarationMap",
+    "build:lib": "rimraf lib && tsc --outDir lib/ --declarationMap --declaration",
+    "build:es": "rimraf es && tsc -m es6 --outDir es",
     "clean:dist": "rimraf dist",
-    "publish-to-npm": "npm run dist && npm publish",
-    "build": "npm run build:lib && npm run build:dist",
+    "build": "npm run build:lib && npm run build:es",
     "test": "webpack-dev-server --config ./config/webpack.test.js --hot --color --port=6060",
     "lint:es": "cross-env NODE_ENV=eslint eslint ./src --ext .js,.jsx,.ts,.tsx",
     "prettier": "pretty-quick --staged"
@@ -57,6 +59,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "@babel/runtime": "^7.4.5",
+    "@types/classnames": "^2.2.9",
     "@types/jest": "^24.0.15",
     "@types/json-schema": "^7.0.3",
     "@types/react": "^16.8.23",
@@ -107,5 +110,9 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "dependencies": {
+    "@ant-design/create-react-context": "^0.2.5",
+    "omit.js": "^1.0.2"
   }
 }

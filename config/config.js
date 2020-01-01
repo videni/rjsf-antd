@@ -22,28 +22,10 @@ exports.basicConfig = {
 /* rules */
 exports.rules = [
   {
-    test: /.*\.jsx?$/,
-    use: ['babel-loader'],
-    exclude: /(node_modules|mocha|chai)/
-  },
-  {
     test: /.*\.tsx?$/,
     use: [
       {
-        loader: 'babel-loader',
-        options: {
-          plugins: [
-            'react-hot-loader/babel',
-            [
-              'import',
-              {
-                libraryName: 'antd',
-                libraryDirectory: 'es',
-                style: 'css'
-              }
-            ]
-          ]
-        }
+        loader: 'babel-loader'
       },
       'ts-loader'
     ],
