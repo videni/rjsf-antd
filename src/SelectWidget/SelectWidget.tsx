@@ -40,6 +40,8 @@ const SelectWidget = (props: any) => {
     <Select
       mode={mode}
       value={value}
+      showSearch={true}
+      filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
       disabled={disabled || readonly}
       autoFocus={autofocus}
       onChange={_onChange}
